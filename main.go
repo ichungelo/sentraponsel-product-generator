@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	appHost, appPort := "localhost", "5000" 
+	appHost, appPort := "localhost", "5001" 
 	app := fiber.New()
 
 	app.Use(cors.New())
