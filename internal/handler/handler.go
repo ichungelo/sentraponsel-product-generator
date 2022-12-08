@@ -15,7 +15,9 @@ func Generate() fiber.Handler {
 
 		if err != nil {
 			return c.Status(http.StatusBadRequest).JSON(&fiber.Map{
-				"error": err.Error(),
+				"Code": http.StatusBadRequest,
+				"Error": err.Error(),
+				"Success": false,
 			})
 		}
 

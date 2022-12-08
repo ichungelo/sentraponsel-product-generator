@@ -11,23 +11,18 @@ type Request struct {
 	Name                  string
 	DescriptionsWaba      string
 	DescriptionsMicrosite string
-	Variants Variants
+	Variants []Variant
 	Images []model.Image
 	Weight float64
 	Stock  int
 }
 
-type Variants struct {
-	Colors   []Color
-	Memories []Memory
+type Variant struct {
+	Type string
+	Name []string
 }
 
 type Color struct {
-	Type string
-	Name string
-}
-
-type Memory struct {
 	Type string
 	Name string
 }
