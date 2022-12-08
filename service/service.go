@@ -15,14 +15,13 @@ func GenerateData(request []presenter.Request) presenter.Response {
 		res.Sku = append(res.Sku, sku)
 
 		//!CREATE VARIANT
-		color, memory := CreateVariant(v, sku.Id)
-		res.Variant = append(res.Variant, color...)
-		if len(memory) > 0 {
-			res.Variant = append(res.Variant, memory...)
+		variant := CreateVariant(v, sku.Id)
+		for _, v := range variant {
+			res.Variant = append(res.Variant, v...)
 		}
 
 		//!CREATE PRODUCT
-		product := CreateProduct(v, color, memory, sku.Id)
+		product := CreateProduct(v, variant, sku.Id)
 		res.Product = append(res.Product, product...)
 	}
 
@@ -51,53 +50,39 @@ func CreateSku(data presenter.Request) model.Sku {
 	}
 }
 
-func CreateVariant(data presenter.Request, skuId string) ([]model.Variant, []model.Variant) {
-	colors, memories := []model.Variant{}, []model.Variant{}
+func CreateVariant(data presenter.Request, skuId string) [][]model.Variant {
+	result := [][]model.Variant{}
 
-	for _, v := range data.Variants.Colors {
-		id := util.GetUlid()
+	for _, variant := range data.Variants {
+		variantTemp := []model.Variant{}
+		for _, variantType := range variant.Name {
+			id := util.GetUlid()
 
-		variantColor := model.Variant{
-			PK:     model.GetVariantPK(id),
-			SK:     model.GetVariantSK(id),
-			GSI1PK: model.GetVariantGSI1PK(data.ShopId),
-			GSI1SK: model.GetVariantGSI1SK(id),
-			GSI2PK: model.GetVariantGSI2PK(skuId),
-			GSI2SK: model.GetVariantGSI2SK(v.Type),
-			Type:   v.Type,
-			Name:   v.Name,
-			Id:     id,
+			variantData := model.Variant{
+				PK:     model.GetVariantPK(id),
+				SK:     model.GetVariantSK(id),
+				GSI1PK: model.GetVariantGSI1PK(data.ShopId),
+				GSI1SK: model.GetVariantGSI1SK(id),
+				GSI2PK: model.GetVariantGSI2PK(skuId),
+				GSI2SK: model.GetVariantGSI2SK(variant.Type),
+				Type:   variant.Type,
+				Name:   variantType,
+				Id:     id,
+			}
+
+			variantTemp = append(variantTemp, variantData)
 		}
-
-		colors = append(colors, variantColor)
+		result = append(result, variantTemp)
 	}
 
-	for _, v := range data.Variants.Memories {
-		id := util.GetUlid()
-
-		variantMemory := model.Variant{
-			PK:     model.GetVariantPK(id),
-			SK:     model.GetVariantSK(id),
-			GSI1PK: model.GetVariantGSI1PK(data.ShopId),
-			GSI1SK: model.GetVariantGSI1SK(id),
-			GSI2PK: model.GetVariantGSI2PK(skuId),
-			GSI2SK: model.GetVariantGSI2SK(v.Type),
-			Type:   v.Type,
-			Name:   v.Name,
-			Id:     id,
-		}
-
-		memories = append(memories, variantMemory)
-	}
-
-	return colors, memories
+	return result
 }
 
-func CreateProduct(data presenter.Request, colors []model.Variant, memories []model.Variant, skuId string) []model.Product {
+func CreateProduct(data presenter.Request, variants [][]model.Variant, skuId string) []model.Product {
 	result := []model.Product{}
-	colorResult := []model.Product{}
+	productTemp := []model.Product{}
 
-	for _, color := range colors {
+	for _, v := range variants[0] {
 		id := util.GetUlid()
 		product := model.Product{
 			PK:                    model.GetProductPK(id),
@@ -115,24 +100,30 @@ func CreateProduct(data presenter.Request, colors []model.Variant, memories []mo
 			Images:                data.Images,
 			BrandName:             data.BrandName,
 			TypeName:              data.TypeName,
-			Variants:              []string{color.Id},
+			Variants:              []string{v.Id},
 			DescriptionsWaba:      data.DescriptionsWaba,
 			DescriptionsMicrosite: data.DescriptionsMicrosite,
 			Weight:                data.Weight,
 			Stock:                 data.Stock,
 		}
-		colorResult = append(colorResult, product)
+		productTemp = append(productTemp, product)
+	}
+	result = productTemp
+
+	if len(variants) < 1 {
+		return result
 	}
 
-	if len(memories) < 1 {
-		return colorResult
-	}
-
-	for _, memory := range memories {
-		for _, data := range colorResult {
-			data.Variants = append(data.Variants, memory.Id)
-			result = append(result, data)
+	for i := 1; i < len(variants); i++ {
+		lastProduct := productTemp
+		productTemp = []model.Product{}
+		for _, variant := range variants[i] {
+			for _, last := range lastProduct {
+				last.Variants = append(last.Variants, variant.Id)
+				productTemp = append(productTemp, last)
+			}
 		}
+		result = productTemp
 	}
 
 	return result

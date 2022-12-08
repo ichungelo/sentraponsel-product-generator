@@ -8,4 +8,6 @@ import (
 
 func Route(app fiber.Router) {
 	app.Post("/generate", handler.Generate())
+	// app.Static("/", "./app")
+	app.Static("/", "./swaggerui")
 }

@@ -1,0 +1,232 @@
+swagger: "2.0"
+info:
+  description: "Product Generator"
+  version: "1.0.0"
+  title: "Product Generator"
+host: "localhost:5000"
+tags:
+- name: "Product"
+schemes:
+- "http"
+paths:
+  /generate:
+    post:
+      tags:
+      - "Product"
+      summary: "Generate Product Data"
+      operationId: "RegisterUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Request"
+        in: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/GenerateRequest"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+definitions:
+  GenerateRequest:
+    type: "array"
+    items: 
+      properties:
+        ShopId:
+          type: string
+          example: 01FM1R0V7M7GFRN8B7F4RG15EE
+        BrandId:
+          type: string
+          example: 01FMKD0T8WBYABWBDX2914JERV
+        BrandName:
+          type: string
+          example: Samsung
+        TypeId:
+          type: string
+          example: 01FMKEVBWDYG6NRQ57XMRE38JQ
+        TypeName:
+          type: string
+          example: Smartphone
+        Name:
+          type: string
+          example: SAMSUNG Z FOLD3 5G
+        DescriptionsWaba:
+          type: string
+          example: Ponsel ini memberikan produktivitas seperti PC, tetapi terlipat di telapak tangan Anda untuk portabilitas. Mode fleksibel memberikan pengalaman multidimensi, sehingga Anda dapat melakukan berbagai hal dengan lebih cepat, lebih baik, dan lebih efisien.
+        DescriptionsMicrosite:
+          type: string
+          example: "DESKRIPSI\n\n- Multitasking yang Mudah\nPonsel ini memberikan produktivitas seperti PC, tetapi terlipat di telapak tangan Anda untuk portabilitas. Mode fleksibel memberikan pengalaman multidimensi, sehingga Anda dapat melakukan berbagai hal dengan lebih cepat, lebih baik, dan lebih efisien.\n\n- Tampilan imersif\nSaat Layar Infinity Flex 7,6 inci berkedip seperti sulap, kamera depan menghilang, tidak meninggalkan apa pun selain video YouTube kamu. Dengan bezel yang lebih sedikit, tanpa notch, dan Under Display Camera, ini adalah ponsel lipat pertama di dunia dengan layar tanpa gangguan.\n\n- Display\nResolution  : 1768 x 2208 pixels\n\n- Kamera\nKamera Depan : 4 MP\nKamera Utama : 12 MP, 12 MP, 12 MP\n\n- Lainnya\nFitur : Fingerprint (side-mounted), accelerometer, gyro, proximity, compass, barometer Bixby natural language commands and dictation Samsung DeX (desktop experience support) Samsung Pay (Visa, MasterCard certified) Ultra Wideband (UWB) support\n\n- Layar\nLayar : Foldable Dynamic AMOLED 2X, 120Hz, HDR10+, 1200 nits (peak)\nUkuran Layar        : 7.6 inches, 179.9 cm2\n\n- Ukuran\nBerat : 271 g\nDimensi        Unfolded : 158.2 x 128.1 x 6.4 mm Folded: 158.2 x 67.1 x 14.4-16 mm\n\n- Network\n2G GSM        : GSM 850 \/ 900 \/ 1800 \/ 1900 CDMA 800 \/ 1900\n3G WCDMA : HSDPA 850 \/ 900 \/ 1700(AWS) \/ 1900 \/ 2100 HSDPA 850 \/ 900 \/ 1900 \/ 2100 CDMA2000 1xEV-DO\n4G : 1, 2, 3, 4, 5, 7, 8, 12, 13, 14, 18, 19, 20, 25, 26, 28, 30, 38, 39, 40, 41, 46, 48, 66, 71\n5G : 2, 5, 25, 41, 66, 71, 260, 261 SA\/NSA\/Sub6\/mmWave\nNetwork        : GSM\/CDMA\/HSPA\/EVDO\/LTE\/5G\nNFC : Yes\nSpeed : HSPA 42.2\/5.76 Mbps, LTE-A (7CA) Cat20 2000\/200 Mbps, 5G\n\n- Dasar\nBattery : Li-Po 4400 mAh Fast charging 25W Fast wireless charging 11W Reverse wireless charging 4.5W\nCPU : Qualcomm SM8350 Snapdragon 888 5G (5 nm)\nOS : Android\nRAM : 12GB\nSIM : Nano-SIM and eSIM\nStorage : 256GB\/512GB."
+        Variants:
+          type: array
+          items: 
+            type: object
+            properties: 
+              Type:
+                type: string
+              Name:
+                type: array
+                items: 
+                  type: string
+          example:
+            - Type: COLOR
+              Name: [BLACK, GREEN, SILVER]
+            - Type: VARIANT
+              Name: [12/256, 12/512]
+        Images:
+          type: array
+          items: 
+            properties: 
+              Link:
+                type: string
+          example:
+            - Link: smasung_z_fold_3_5g.jpg
+        Weight:
+          type: number
+          example: 0.6
+        Stock:
+          type: number
+          example: 100
+
+  ApiResponse:
+    type: "object"
+    properties:
+      Sku:
+        type: "array"
+        items: 
+          $ref: "#/definitions/Sku"
+      Variant:
+        type: "array"
+        items: 
+          $ref: "#/definitions/Variant"
+      Products:
+        type: "array"
+        items: 
+          $ref: "#/definitions/Product"
+
+  ErrorResponse:
+    type: "object"
+    properties:
+      Code:
+        type: number
+        default: 400
+      Message:
+        type: string
+        default: error message
+      Success:
+        type: boolean
+        default: false
+
+  Sku:
+    type: object
+    properties: 
+      PK:
+        type: string
+      SK:
+        type: string
+      GSI1PK:
+        type: string
+      GSI1SK:
+        type: string
+      GSI2PK:
+        type: string
+      GSI2SK:
+        type: string
+      GSI3PK:
+        type: string
+      GSI3SK:
+        type: string
+      GSI4PK:
+        type: string
+      GSI4SK:
+        type: string
+      Name:
+        type: string
+      Id:
+        type: string
+      BrandName:
+        type: string
+      TypeName:
+        type: string
+      DescriptionsWaba:
+        type: string
+      DescriptionsMicrosite:
+        type: string
+
+  Variant:
+    type: object
+    properties: 
+      PK:
+        type: string
+      SK:
+        type: string
+      GSI1PK:
+        type: string
+      GSI1SK:
+        type: string
+      GSI2PK:
+        type: string
+      GSI2SK:
+        type: string
+      Type:
+        type: string
+      Name:
+        type: string
+      Id:
+        type: string
+
+  Product:
+    type: object
+    properties: 
+      PK:
+        type: string
+      SK:
+        type: string
+      GSI1PK:
+        type: string
+      GSI1SK:
+        type: string
+      GSI2PK:
+        type: string
+      GSI2SK:
+        type: string
+      GSI3PK:
+        type: string
+      GSI3SK:
+        type: string
+      Id:
+        type: string
+      Name:
+        type: string
+      Price:
+        type: number
+      Discount:
+        type: number
+      Images:
+        type: array
+        items: 
+          properties: 
+            Link:
+              type: string
+      BrandName:
+        type: string
+      TypeName:
+        type: string
+      Variants:
+        type: array
+        items: 
+          type: string
+      DescriptionsWaba:
+        type: string
+      DescriptionsMicrosite:
+        type: string
+      Weight:
+        type: number
+      Stock:
+        type: number

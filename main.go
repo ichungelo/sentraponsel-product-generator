@@ -6,11 +6,14 @@ import (
 	"sentraponsel-product-generator/router"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func main() {
 	appHost, appPort := "localhost", "5000" 
 	app := fiber.New()
+
+	app.Use(cors.New())
 
 	router.Route(app)
 
