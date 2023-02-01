@@ -7,3 +7,15 @@ type Response struct {
 	Variant []model.Variant
 	Product []model.Product
 }
+
+type ResponseSales struct {
+	Sales []model.Member
+}
+
+type ResponseStore struct {
+	Store []model.Store
+}
+
+type ResponseUser struct {
+	User []model.Member
+}

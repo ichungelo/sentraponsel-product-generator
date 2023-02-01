@@ -5,26 +5,27 @@ info:
   title: "Product Generator"
 host: "localhost:5001"
 tags:
-- name: "Product"
+  - name: "Sentraponsel"
+  - name: "Parastar"
 schemes:
-- "http"
+  - "http"
 paths:
-  /generate:
+  /sentraponsel/generate:
     post:
       tags:
-      - "Product"
+        - "Sentraponsel"
       summary: "Generate Product Data"
       operationId: "RegisterUser"
       consumes:
-      - "application/json"
+        - "application/json"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "Request"
-        in: "body"
-        required: true
-        schema:
-          $ref: "#/definitions/GenerateRequest"
+        - name: "Request"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/GenerateRequest"
       responses:
         "200":
           description: "Successful operation"
@@ -34,10 +35,86 @@ paths:
           description: "Bad Request"
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /parastar/generate/sales:
+    post:
+      tags:
+        - "Parastar"
+      summary: "Generate Sales Data for Parastar"
+      operationId: ""
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Request"
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/GenerateSalesRequest"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/GenerateSalesResponse"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /parastar/generate/store:
+    post:
+      tags:
+        - "Parastar"
+      summary: "Generate Store Data for Parastar"
+      operationId: ""
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Request"
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/GenerateStoreRequest"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/GenerateStoreResponse"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /parastar/generate/user:
+    post:
+      tags:
+        - "Parastar"
+      summary: "Generate User Data for Parastar"
+      operationId: ""
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Request"
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/GenerateUserRequest"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/GenerateUserResponse"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
 definitions:
   GenerateRequest:
     type: "array"
-    items: 
+    items:
       properties:
         ShopId:
           type: string
@@ -65,14 +142,14 @@ definitions:
           example: "DESKRIPSI\n\n- Multitasking yang Mudah\nPonsel ini memberikan produktivitas seperti PC, tetapi terlipat di telapak tangan Anda untuk portabilitas. Mode fleksibel memberikan pengalaman multidimensi, sehingga Anda dapat melakukan berbagai hal dengan lebih cepat, lebih baik, dan lebih efisien.\n\n- Tampilan imersif\nSaat Layar Infinity Flex 7,6 inci berkedip seperti sulap, kamera depan menghilang, tidak meninggalkan apa pun selain video YouTube kamu. Dengan bezel yang lebih sedikit, tanpa notch, dan Under Display Camera, ini adalah ponsel lipat pertama di dunia dengan layar tanpa gangguan.\n\n- Display\nResolution  : 1768 x 2208 pixels\n\n- Kamera\nKamera Depan : 4 MP\nKamera Utama : 12 MP, 12 MP, 12 MP\n\n- Lainnya\nFitur : Fingerprint (side-mounted), accelerometer, gyro, proximity, compass, barometer Bixby natural language commands and dictation Samsung DeX (desktop experience support) Samsung Pay (Visa, MasterCard certified) Ultra Wideband (UWB) support\n\n- Layar\nLayar : Foldable Dynamic AMOLED 2X, 120Hz, HDR10+, 1200 nits (peak)\nUkuran Layar        : 7.6 inches, 179.9 cm2\n\n- Ukuran\nBerat : 271 g\nDimensi        Unfolded : 158.2 x 128.1 x 6.4 mm Folded: 158.2 x 67.1 x 14.4-16 mm\n\n- Network\n2G GSM        : GSM 850 \/ 900 \/ 1800 \/ 1900 CDMA 800 \/ 1900\n3G WCDMA : HSDPA 850 \/ 900 \/ 1700(AWS) \/ 1900 \/ 2100 HSDPA 850 \/ 900 \/ 1900 \/ 2100 CDMA2000 1xEV-DO\n4G : 1, 2, 3, 4, 5, 7, 8, 12, 13, 14, 18, 19, 20, 25, 26, 28, 30, 38, 39, 40, 41, 46, 48, 66, 71\n5G : 2, 5, 25, 41, 66, 71, 260, 261 SA\/NSA\/Sub6\/mmWave\nNetwork        : GSM\/CDMA\/HSPA\/EVDO\/LTE\/5G\nNFC : Yes\nSpeed : HSPA 42.2\/5.76 Mbps, LTE-A (7CA) Cat20 2000\/200 Mbps, 5G\n\n- Dasar\nBattery : Li-Po 4400 mAh Fast charging 25W Fast wireless charging 11W Reverse wireless charging 4.5W\nCPU : Qualcomm SM8350 Snapdragon 888 5G (5 nm)\nOS : Android\nRAM : 12GB\nSIM : Nano-SIM and eSIM\nStorage : 256GB\/512GB."
         Variants:
           type: array
-          items: 
+          items:
             type: object
-            properties: 
+            properties:
               Type:
                 type: string
               Name:
                 type: array
-                items: 
+                items:
                   type: string
           example:
             - Type: COLOR
@@ -81,8 +158,8 @@ definitions:
               Name: [12/256, 12/512]
         Images:
           type: array
-          items: 
-            properties: 
+          items:
+            properties:
               Link:
                 type: string
           example:
@@ -94,21 +171,284 @@ definitions:
           type: number
           example: 100
 
+  GenerateSalesRequest:
+    type: object
+    properties: 
+      CompanyId:
+        type: string
+        example: 01G2MVQNXQCFK2BPS5JE7AHV8D
+      CompanyName:
+        type: string
+        example: PT Parastar Distrindo
+      WarehouseId:
+        type: string
+        example: 01GMFQ5CK8H0TSSKCBY5RHNF7H
+      WarehouseName:
+        type: string
+        example: BO SULAWESI XL WONO
+      WorkAreaId:
+        type: string
+        example: 01GMCN68FKTS3P75G0HB42MQXY
+      WorkAreaName:
+        type: string
+        example: SULSEL
+      SalesData:
+        type: "array"
+        items: 
+          $ref: "#/definitions/SalesData" 
+
+  GenerateStoreRequest:
+    type: object
+    properties: 
+      CompanyId:
+        type: string
+        example: 01G2MVQNXQCFK2BPS5JE7AHV8D
+      CompanyName:
+        type: string
+        example: PT Parastar Distrindo
+      WarehouseId:
+        type: string
+        example: 01GMFQ5CK8H0TSSKCBY5RHNF7H
+      WarehouseName:
+        type: string
+        example: BO SULAWESI XL WONO
+      WorkAreaId:
+        type: string
+        example: 01GMCN68FKTS3P75G0HB42MQXY
+      WorkAreaName:
+        type: string
+        example: SULSEL
+      StoreData:
+        type: "array"
+        items: 
+          $ref: "#/definitions/StoreData"
+
+  GenerateUserRequest:
+    type: object
+    properties:
+      UserData:
+        type: "array"
+        items: 
+          $ref: "#/definitions/UserData" 
+
+  SalesData:
+    type: object
+    properties: 
+      Name:
+        type: string
+        example: Ade Imran
+      PhoneNumber:
+        type: string
+        example: 087842297779
+      SalesEmail:
+        type: string
+        example: ade.imran24@gmail.com
+      SpvName:
+        type: string
+        example: Baharuddin
+      SpvPhoneNumber:
+        type: string
+        example: 087850818999
+      SpvEmail:
+        type: string
+        example: baharuddin@para-star.com
+      BMName:
+        type: string
+        example: SAHARUDDIN
+      BMPhoneNumber:
+        type: string
+        example: 081991700001
+      BMEmail:
+        type: string
+        example: saharuddin@para-star.com
+      BranchOfficeName:
+        type: string
+        example: SULSELBO SULAWESI XL BONE
+      WorkareaName:
+        type: string
+        example: SULSEL
+      WarehouseName:
+        type: string
+        example: BO SULAWESI XL BONE
+      LimitSales:
+        type: number
+        example: 50000000
+      SettlementDuration:
+        type: number
+        example: 1
+      MinimumAttendance:
+        type: number
+        example: 24
+      MinimumVisit:
+        type: number
+        example: 12
+      MinimumCheckin:
+        type: number
+        example: 9
+      TargetRevenue:
+        type: number
+        example: 1017673351.8358719
+
+  StoreData:
+    type: object
+    properties: 
+      NoChip:
+        type: string
+        example: 6287869185349
+      OwnerName:
+        type: string
+        example: Syamsidar
+      OwnerAddress:
+        type: string
+        example: Pasangkayu
+      OwnerKTP:
+        type: string
+        example: 7406075109840001
+      OwnerEmail:
+        type: string
+        example: Parastar.yusuf@gmail.com
+      OwnerPhoneNumber:
+        type: string
+        example: 081238085008
+      PICName:
+        type: string
+        example: Syamsidar
+      PICPhoneNumber:
+        type: string
+        example: 081238085008
+      StoreName:
+        type: string
+        example: Darsyam Cell Matra
+      StoreEmail:
+        type: string
+        example: Parastar.yusuf@gmail.com
+      StorePhoneNumber:
+        type: string
+        example: 081238085008
+      StoreType:
+        type: string
+        example: Retail
+      PriceType:
+        type: string
+        example: Price 1
+      Longitude:
+        type: string
+        example: 119.365253
+      Latitude:
+        type: string
+        example: -1.1794
+      StoreAddress:
+        type: string
+        example: PASANGKAYU
+      District:
+        type: string
+        example: KAB. MAMUJU UTARA
+      City:
+        type: string
+        example: PASANGKAYU
+      Province:
+        type: string
+        example: SULAWESI BARAT
+      PostalCode:
+        type: number
+        example: 91571
+      TopLimit:
+        type: number
+        example: 0
+      TopDuration:
+        type: number
+        example: 0
+      ConsignmentLimit:
+        type: number
+        example: 0
+      ConsigmentDuration:
+        type: number
+        example: 0
+      UseSKB:
+        type: boolean
+        example: false
+      CanConsignment:
+        type: boolean
+        example: false
+      CanTOP:
+        type: boolean
+        example: false
+
+  UserData:
+    type: object
+    properties: 
+      Name:
+        type: string
+        example: "pritya Windy anggita"
+      PhoneNumber:
+        type: string
+        example: "085974325000"
+      UserGroup:
+        type: array
+        items: 
+          type: string
+          example: parastar/adminlogistic
+      EmailAddress:
+        type: string
+        example: finance.logistic.xl.luwutimur@para-star.com
+      WarehouseId:
+        type: string
+        example: 01GQVN8A6702R4BVTMX4TH0H0A
+      WarehouseName:
+        type: string
+        example: BO SULAWESI XL LUWU TIMUR
+      WorkareaId:
+        type: string
+        example: 01GMCN68FKTS3P75G0HB42MQXY
+      WorkareaName:
+        type: string
+        example: SULSEL
+      CompanyId:
+        type: string
+        example: false01G2MVQNXQCFK2BPS5JE7AHV8D
+      CompanyName:
+        type: string
+        example: PT Parastar Distrindo
+
   ApiResponse:
     type: "object"
     properties:
       Sku:
         type: "array"
-        items: 
+        items:
           $ref: "#/definitions/Sku"
       Variant:
         type: "array"
-        items: 
+        items:
           $ref: "#/definitions/Variant"
       Products:
         type: "array"
-        items: 
+        items:
           $ref: "#/definitions/Product"
+
+  GenerateSalesResponse:
+    type: "object"
+    properties:
+      Sales:
+        type: "array"
+        items:
+          $ref: "#/definitions/Member"
+
+  GenerateStoreResponse:
+    type: "object"
+    properties:
+      Store:
+        type: "array"
+        items:
+          $ref: "#/definitions/Store"
+
+  GenerateUserResponse:
+    type: "object"
+    properties:
+      User:
+        type: "array"
+        items:
+          $ref: "#/definitions/Member"
 
   ErrorResponse:
     type: "object"
@@ -125,7 +465,7 @@ definitions:
 
   Sku:
     type: object
-    properties: 
+    properties:
       PK:
         type: string
       SK:
@@ -161,7 +501,7 @@ definitions:
 
   Variant:
     type: object
-    properties: 
+    properties:
       PK:
         type: string
       SK:
@@ -183,7 +523,7 @@ definitions:
 
   Product:
     type: object
-    properties: 
+    properties:
       PK:
         type: string
       SK:
@@ -210,8 +550,8 @@ definitions:
         type: number
       Images:
         type: array
-        items: 
-          properties: 
+        items:
+          properties:
             Link:
               type: string
       BrandName:
@@ -220,7 +560,7 @@ definitions:
         type: string
       Variants:
         type: array
-        items: 
+        items:
           type: string
       DescriptionsWaba:
         type: string
@@ -230,3 +570,222 @@ definitions:
         type: number
       Stock:
         type: number
+
+  Member:
+    type: object
+    properties: 
+      PK:
+        type: string
+      SK:
+        type: string
+      GSI1PK:
+        type: string
+      GSI1SK:
+        type: string
+      GSI2PK:
+        type: string
+      GSI2SK:
+        type: string
+      GSI3PK:
+        type: string
+      GSI3SK:
+        type: string
+      GSI4PK:
+        type: string
+      GSI4SK:
+        type: string
+      Id:
+        type: string
+      Name:
+        type: string
+      Nickname:
+        type: string
+      Email:
+        type: string
+      Mobile:
+        type: string
+      Roles:
+        type: array
+        items: 
+          type: string
+      Position:
+        type: string
+      Active:
+        type: boolean
+      AvailableCompany:
+        type: array
+        items: 
+          type: object
+          properties: 
+            Id:
+              type: string
+            Name:
+              type: string
+      AvailableWarehouse:
+        type: array
+        items: 
+          type: object
+          properties: 
+            Id:
+              type: string
+            Name:
+              type: string
+      AvailableWorkarea:
+        type: array
+        items: 
+          type: object
+          properties: 
+            Id:
+              type: string
+            Name:
+              type: string
+      SpvName:
+        type: string
+      SpvMobile:
+        type: string
+      SpvEmail:
+        type: string
+      BranchOffice:
+        type: string
+      BranchManagerName:
+        type: string
+      BranchManagerEmail:
+        type: string
+      BranchManagerMobile:
+        type: string
+      SettlementFinanceDuration:
+        type: number
+      SettlementLogisticDuration:
+        type: number
+      IsCanAttendance:
+        type: boolean
+      IsCanJourneyVisit:
+        type: boolean
+      IsCanSettlementFinance:
+        type: boolean
+      IsCanSettlementLogistic:
+        type: boolean
+      IsAlreadyAttendance:
+        type: boolean
+      MinimumRevenue:
+        type: number
+      MinimumAttendance:
+        type: number
+      MinimumCheckIn:
+        type: number
+      MinimumVisit:
+        type: number
+      AssignmentLimit:
+        type: number
+      IsFinanceSettlementComplete:
+        type: boolean
+      IsProductSettlementComplete:
+        type: boolean
+      IsAssignmentComplete:
+        type: boolean
+      MemberType:
+        type: string
+      CreatedTimestamp:
+        type: string
+      UpdatedTimestamp:
+        type: string
+
+  Store:
+    type: object
+    properties: 
+      PK:
+        type: string
+      SK:
+        type: string
+      GSI1PK:
+        type: string
+      GSI1SK:
+        type: string
+      GSI2PK:
+        type: string
+      GSI2SK:
+        type: string
+      GSI3PK:
+        type: string
+      GSI3SK:
+        type: string
+      Id:
+        type: string
+      Name:
+        type: string
+      Mobile:
+        type: string
+      Email:
+        type: string
+      Type:
+        type: string
+      Address:
+        type: string
+      City:
+        type: string
+      Province:
+        type: string
+      District:
+        type: string
+      PostalCode:
+        type: string
+      Longitude:
+        type: number
+      Latitude:
+        type: number
+      NoKtp:
+        type: string
+      NoChip:
+        type: string
+      Npwp:
+        type: string
+      NpwpAddress:
+        type: string
+      PictKtp:
+        type: string
+      PictNpwp:
+        type: string
+      PictStore:
+        type: string
+      OwnerName:
+        type: string
+      OwnerMobile:
+        type: string
+      OwnerEmail:
+        type: string
+      TypeData:
+        type: string
+      PriceType:
+        type: string
+      HashKey:
+        type: number
+      GeoHash:
+        type: number
+      IsApprove:
+        type: boolean
+      IsCanTop:
+        type: boolean
+      IsCanConsignment:
+        type: boolean
+      CreateById:
+        type: string
+      CreateByName:
+        type: string
+      TopDuration:
+        type: number
+      ConsignmentDuration:
+        type: number
+      Top:
+        type: number
+      Consignment:
+        type: number
+      Limit:
+        type: number
+      IsSubStore:
+        type: number
+      Active:
+        type: number
+      CreatedTimestamp:
+        type: string
+      UpdatedTimestamp:
+        type: string

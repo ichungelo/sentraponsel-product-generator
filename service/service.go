@@ -1,9 +1,16 @@
 package service
 
 import (
+	"fmt"
+	"math"
 	"sentraponsel-product-generator/internal/presenter"
 	"sentraponsel-product-generator/model"
 	"sentraponsel-product-generator/util"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/aws/aws-sdk-go-v2/aws"
 )
 
 func GenerateData(request []presenter.Request) presenter.Response {
@@ -127,4 +134,230 @@ func CreateProduct(data presenter.Request, variants [][]model.Variant, skuId str
 	}
 
 	return result
+}
+
+//! PARASTAR
+
+func GenerateDataSales(request presenter.RequestSales) presenter.ResponseSales {
+	res := presenter.ResponseSales{}
+
+	for _, v := range request.SalesData {
+		sales := CreateSales(v, request.CompanyId, request.CompanyName, request.WarehouseId, request.WarehouseName, request.WorkAreaId, request.WorkAreaName)
+
+		res.Sales = append(res.Sales, sales)
+	}
+
+	return res
+}
+
+func CreateSales(salesData presenter.SalesData, companyId, companyName, warehouseId, warehouseName, workAreaId, workAreaName string) model.Member {
+	var (
+		timeNow       = time.Now()
+		id            = util.GetUlid()
+		name          = util.ProsesNameToStandard(salesData.Name)
+		targetRevenue = math.Ceil(salesData.TargetRevenue)
+	)
+	return model.Member{
+		Active:                      aws.Bool(true),
+		AssignmentLimit:             salesData.LimitSales,
+		BranchManagerName:           &salesData.BMName,
+		BranchManagerMobile:         &salesData.BMPhoneNumber,
+		BranchManagerEmail:          &salesData.BMEmail,
+		BranchOffice:                &salesData.BranchOfficeName,
+		CreatedTimestamp:            aws.Time(timeNow),
+		UpdatedTimestamp:            aws.Time(timeNow),
+		Email:                       &salesData.SalesEmail,
+		GSI1PK:                      aws.String(model.BuildMemberGsi1Pk(companyId)),
+		GSI1SK:                      aws.String(model.BuildMemberGsi1Sk(id)),
+		GSI2PK:                      aws.String(model.BuildMemberGsi2Pk(salesData.SalesEmail)),
+		GSI2SK:                      aws.String(model.BuildMemberGsi2Sk(id)),
+		GSI3PK:                      aws.String(model.BuildMemberGsi3Pk("SALES")),
+		GSI3SK:                      aws.String(model.BuildMemberGsi3Sk(id)),
+		GSI4PK:                      aws.String(model.BuildMemberGsi4Pk(name)),
+		GSI4SK:                      aws.String(model.BuildMemberGsi4Sk(name)),
+		Id:                          &id,
+		IsAlreadyAttendance:         aws.Bool(false),
+		IsAssignmentComplete:        aws.Bool(true),
+		IsCanAttendance:             aws.Bool(true),
+		IsCanJourneyVisit:           aws.Bool(true),
+		IsCanSettlementFinance:      aws.Bool(true),
+		IsCanSettlementLogistic:     aws.Bool(true),
+		IsFinanceSettlementComplete: aws.Bool(true),
+		IsProductSettlementComplete: aws.Bool(true),
+		MemberType:                  aws.String("SALES"),
+		MinimumAttendance:           &salesData.MinimumAttendance,
+		MinimumCheckIn:              &salesData.MinimumCheckin,
+		MinimumRevenue:              aws.Float64(targetRevenue),
+		MinimumVisit:                &salesData.MinimumVisit,
+		Mobile:                      &salesData.PhoneNumber,
+		Name:                        &salesData.Name,
+		Nickname:                    &salesData.Name,
+		PK:                          aws.String(model.BuildMemberPk(id)),
+		SK:                          aws.String(model.BuildMemberSk(id)),
+		SettlementFinanceDuration:   aws.Int64(int64(salesData.SettlementDuration)),
+		SettlementLogisticDuration:  aws.Int64(int64(salesData.SettlementDuration)),
+		SpvName:                     &salesData.SpvName,
+		SpvMobile:                   &salesData.SpvPhoneNumber,
+		SpvEmail:                    &salesData.SpvEmail,
+		Position:                    aws.String("parastar/sales"),
+		Roles:                       []string{"parastar/sales"},
+		AvailableCompany: []model.MemberAvailableCompany{
+			{
+				Id:   &companyId,
+				Name: &companyName,
+			},
+		},
+		AvailableWorkarea: []model.MemberAvailableWorkarea{
+			{
+				Id:   &workAreaId,
+				Name: &workAreaName,
+			},
+		},
+		AvailableWarehouse: []model.MemberAvailableWarehouse{
+			{
+				Id:   &warehouseId,
+				Name: &warehouseName,
+			},
+		},
+	}
+}
+
+func GenerateDataStore(request presenter.RequestStore) presenter.ResponseStore {
+	res := presenter.ResponseStore{}
+
+	for _, v := range request.StoreData {
+		store := CreateStore(v, request.CompanyId, request.CompanyName, request.WarehouseId, request.WarehouseName, request.WorkAreaId, request.WorkAreaName)
+
+		res.Store = append(res.Store, store)
+	}
+
+	return res
+}
+
+func CreateStore(storeData presenter.StoreData, companyId string, companyName string, warehouseId string, warehouseName string, workAreaId string, workAreaName string) model.Store {
+	var (
+		id              string = util.GetUlid()
+		lat, _                 = strconv.ParseFloat(storeData.Latitude, 64)
+		lon, _                 = strconv.ParseFloat(storeData.Longitude, 64)
+		postalCode      string = fmt.Sprint(int(storeData.PostalCode))
+		priceTypeFormat string = strings.ReplaceAll(storeData.PriceType, " ", "")
+		timeNow                = time.Now()
+	)
+
+	hash := util.GenerateHash(lat, lon)
+	geohash, hashkey := util.GenCellIntPrefix(hash)
+
+	return model.Store{
+		PK:                  aws.String(model.BuildStorePk(id)),
+		SK:                  aws.String(model.BuildStoreSk(id)),
+		Active:              aws.Bool(true),
+		Address:             &storeData.StoreAddress,
+		City:                &storeData.City,
+		Consignment:         aws.Float64(0),
+		ConsignmentDuration: aws.Int64(1),
+		CreateById:          &companyId,
+		CreateByName:        &companyName,
+		CreatedTimestamp:    aws.Time(timeNow),
+		District:            &storeData.District,
+		Email:               &storeData.StoreEmail,
+		GeoHash:             aws.Uint64(geohash),
+		GSI1PK:              aws.String(model.BuildStoreGsi1Pk(companyId, fmt.Sprint(hashkey))),
+		GSI1SK:              aws.String(model.BuildStoreGsi1Sk(fmt.Sprint(geohash))),
+		GSI2PK:              aws.String(model.BuildStoreGsi2Pk(strings.ToUpper(strings.ReplaceAll(storeData.StoreName, " ", "")))),
+		GSI2SK:              aws.String(model.BuildStoreGsi2Sk(storeData.NoChip)),
+		GSI3PK:              aws.String(model.BuildStoreGsi3Pk(storeData.NoChip)),
+		GSI3SK:              aws.String(model.BuildStoreGsi3Sk(storeData.NoChip)),
+		HashKey:             &hashkey,
+		Id:                  &id,
+		IsApprove:           aws.Bool(true),
+		IsCanConsignment:    &storeData.CanConsignment,
+		IsCanTop:            &storeData.CanTOP,
+		IsSubStore:          aws.Bool(false),
+		Latitude:            aws.Float64(float64(lat)),
+		Longitude:           aws.Float64(float64(lon)),
+		Limit:               aws.Float64(10000000),
+		Mobile:              &storeData.StorePhoneNumber,
+		Name:                &storeData.StoreName,
+		NoChip:              &storeData.NoChip,
+		NoKtp:               &storeData.OwnerKTP,
+		Npwp:                aws.String(""),
+		NpwpAddress:         aws.String(""),
+		OwnerEmail:          &storeData.OwnerEmail,
+		OwnerMobile:         &storeData.OwnerPhoneNumber,
+		OwnerName:           &storeData.OwnerName,
+		PicName:             &storeData.PICName,
+		PicMobile:           &storeData.PICPhoneNumber,
+		PictKtp:             aws.String(""),
+		PictNpwp:            aws.String(""),
+		PictStore:           aws.String(""),
+		PostalCode:          aws.String(postalCode),
+		PriceType:           aws.String(strings.ToUpper(priceTypeFormat)),
+		Province:            &storeData.Province,
+		Top:                 aws.Float64(0),
+		TopDuration:         aws.Int64(1),
+		Type:                &storeData.StoreType,
+		TypeData:            aws.String("REAL"),
+		UpdatedTimestamp:    aws.Time(timeNow),
+	}
+}
+
+func GenerateUser(request presenter.RequestUser) presenter.ResponseUser {
+	res := presenter.ResponseUser{}
+
+	for _, v := range request.UserData {
+		user := CreateUser(v)
+
+		res.User = append(res.User, user)
+	}
+
+	return res
+}
+
+func CreateUser(userData presenter.UserData) model.Member {
+	var (
+		timeNow = time.Now()
+		id      = util.GetUlid()
+		name    = util.ProsesNameToStandard(userData.Name)
+	)
+	return model.Member{
+		Active:     aws.Bool(true),
+		PK:         aws.String(model.BuildMemberPk(id)),
+		SK:         aws.String(model.BuildMemberSk(id)),
+		GSI1PK:     aws.String(model.BuildMemberGsi1Pk(userData.CompanyId)),
+		GSI1SK:     aws.String(model.BuildMemberGsi1Sk(id)),
+		GSI2PK:     aws.String(model.BuildMemberGsi2Pk(userData.EmailAddress)),
+		GSI2SK:     aws.String(model.BuildMemberGsi2Sk(id)),
+		GSI3PK:     aws.String(model.BuildMemberGsi3Pk("USER")),
+		GSI3SK:     aws.String(model.BuildMemberGsi3Sk(id)),
+		GSI4PK:     aws.String(model.BuildMemberGsi4Pk(name)),
+		GSI4SK:     aws.String(model.BuildMemberGsi4Sk(name)),
+		Id:         &id,
+		Name:       &userData.Name,
+		Nickname:   &userData.Name,
+		Email:      &userData.EmailAddress,
+		Mobile:     &userData.PhoneNumber,
+		Roles:      userData.UserGroup,
+		MemberType: aws.String("USER"),
+		AvailableCompany: []model.MemberAvailableCompany{
+			{
+				Id:   &userData.CompanyId,
+				Name: &userData.CompanyName,
+			},
+		},
+		AvailableWorkarea: []model.MemberAvailableWorkarea{
+			{
+				Id:   &userData.WorkareaId,
+				Name: &userData.WorkareaName,
+			},
+		},
+		AvailableWarehouse: []model.MemberAvailableWarehouse{
+			{
+				Id:   &userData.WarehouseId,
+				Name: &userData.WarehouseName,
+			},
+		},
+		CreatedTimestamp: aws.Time(timeNow),
+		UpdatedTimestamp: aws.Time(timeNow),
+	}
+
 }

@@ -1,0 +1,329 @@
+{
+  "Sales": [
+    {
+      "PK": "MEMBER#01GR08SM34747R77XCPA2V1M8Q",
+      "SK": "MEMBER#01GR08SM34747R77XCPA2V1M8Q",
+      "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+      "GSI1SK": "MEMBER#01GR08SM34747R77XCPA2V1M8Q",
+      "GSI2PK": "EMAIL#dedhyarsyla@gmail.com",
+      "GSI2SK": "MEMBER#01GR08SM34747R77XCPA2V1M8Q",
+      "GSI3PK": "MEMBERTYPE#SALES",
+      "GSI3SK": "MEMBER#01GR08SM34747R77XCPA2V1M8Q",
+      "GSI4PK": "MEMBER#NAME#DEDYSUDARYANTO",
+      "GSI4SK": "MEMBER#NAME#DEDYSUDARYANTO",
+      "Id": "01GR08SM34747R77XCPA2V1M8Q",
+      "Name": "Dedy Sudaryanto",
+      "Nickname": "Dedy Sudaryanto",
+      "Email": "dedhyarsyla@gmail.com",
+      "Mobile": "087714720557",
+      "Roles": [
+        "parastar/sales"
+      ],
+      "Position": "parastar/sales",
+      "Active": true,
+      "AvailableCompany": [
+        {
+          "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "Name": "PT Parastar Distrindo"
+        }
+      ],
+      "AvailableWarehouse": [
+        {
+          "Id": "01GQVN8A6702R4BVTMX4TH0H0A",
+          "Name": "BO SULAWESI XL LUWU TIMUR"
+        }
+      ],
+      "AvailableWorkarea": [
+        {
+          "Id": "01GMCN68FKTS3P75G0HB42MQXY",
+          "Name": "SULSEL"
+        }
+      ],
+      "SpvName": "Yusuf",
+      "SpvMobile": "081998333338",
+      "SpvEmail": "yusuf.azzam301088@gmail.com",
+      "BranchOffice": "BO SULAWESI XL LUWU TIMUR",
+      "BranchManagerName": "Taufan Prasasti",
+      "BranchManagerEmail": "taufan.prasasti@para-star.com",
+      "BranchManagerMobile": "0818510052",
+      "SettlementFinanceDuration": 1,
+      "SettlementLogisticDuration": 1,
+      "IsCanAttendance": true,
+      "IsCanJourneyVisit": true,
+      "IsCanSettlementFinance": true,
+      "IsCanSettlementLogistic": true,
+      "IsAlreadyAttendance": false,
+      "MinimumRevenue": 379670902,
+      "MinimumAttendance": 24,
+      "MinimumCheckIn": 8,
+      "MinimumVisit": 10,
+      "AssignmentLimit": 40000000,
+      "IsFinanceSettlementComplete": true,
+      "IsProductSettlementComplete": true,
+      "IsAssignmentComplete": true,
+      "MemberType": "SALES",
+      "CreatedTimestamp": "2023-01-30T09:41:13.828399232+07:00",
+      "UpdatedTimestamp": "2023-01-30T09:41:13.828399232+07:00"
+    },
+    {
+      "PK": "MEMBER#01GR08SM34C6C925A4WMHYXEDS",
+      "SK": "MEMBER#01GR08SM34C6C925A4WMHYXEDS",
+      "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+      "GSI1SK": "MEMBER#01GR08SM34C6C925A4WMHYXEDS",
+      "GSI2PK": "EMAIL#arishafariza08@gmail.com",
+      "GSI2SK": "MEMBER#01GR08SM34C6C925A4WMHYXEDS",
+      "GSI3PK": "MEMBERTYPE#SALES",
+      "GSI3SK": "MEMBER#01GR08SM34C6C925A4WMHYXEDS",
+      "GSI4PK": "MEMBER#NAME#MUHAMMADIKHSANBAKRI",
+      "GSI4SK": "MEMBER#NAME#MUHAMMADIKHSANBAKRI",
+      "Id": "01GR08SM34C6C925A4WMHYXEDS",
+      "Name": "Muhammad Ikhsan Bakri",
+      "Nickname": "Muhammad Ikhsan Bakri",
+      "Email": "arishafariza08@gmail.com",
+      "Mobile": "087735489993",
+      "Roles": [
+        "parastar/sales"
+      ],
+      "Position": "parastar/sales",
+      "Active": true,
+      "AvailableCompany": [
+        {
+          "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "Name": "PT Parastar Distrindo"
+        }
+      ],
+      "AvailableWarehouse": [
+        {
+          "Id": "01GQVN8A6702R4BVTMX4TH0H0A",
+          "Name": "BO SULAWESI XL LUWU TIMUR"
+        }
+      ],
+      "AvailableWorkarea": [
+        {
+          "Id": "01GMCN68FKTS3P75G0HB42MQXY",
+          "Name": "SULSEL"
+        }
+      ],
+      "SpvName": "Yusuf",
+      "SpvMobile": "081998333338",
+      "SpvEmail": "yusuf.azzam301088@gmail.com",
+      "BranchOffice": "BO SULAWESI XL LUWU TIMUR",
+      "BranchManagerName": "Taufan Prasasti",
+      "BranchManagerEmail": "taufan.prasasti@para-star.com",
+      "BranchManagerMobile": "0818510052",
+      "SettlementFinanceDuration": 1,
+      "SettlementLogisticDuration": 1,
+      "IsCanAttendance": true,
+      "IsCanJourneyVisit": true,
+      "IsCanSettlementFinance": true,
+      "IsCanSettlementLogistic": true,
+      "IsAlreadyAttendance": false,
+      "MinimumRevenue": 408330477,
+      "MinimumAttendance": 24,
+      "MinimumCheckIn": 8,
+      "MinimumVisit": 10,
+      "AssignmentLimit": 40000000,
+      "IsFinanceSettlementComplete": true,
+      "IsProductSettlementComplete": true,
+      "IsAssignmentComplete": true,
+      "MemberType": "SALES",
+      "CreatedTimestamp": "2023-01-30T09:41:13.828511069+07:00",
+      "UpdatedTimestamp": "2023-01-30T09:41:13.828511069+07:00"
+    },
+    {
+      "PK": "MEMBER#01GR08SM341WT81HBYYH8G1H9Y",
+      "SK": "MEMBER#01GR08SM341WT81HBYYH8G1H9Y",
+      "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+      "GSI1SK": "MEMBER#01GR08SM341WT81HBYYH8G1H9Y",
+      "GSI2PK": "EMAIL#nuraling07@gmail.com",
+      "GSI2SK": "MEMBER#01GR08SM341WT81HBYYH8G1H9Y",
+      "GSI3PK": "MEMBERTYPE#SALES",
+      "GSI3SK": "MEMBER#01GR08SM341WT81HBYYH8G1H9Y",
+      "GSI4PK": "MEMBER#NAME#NURALING",
+      "GSI4SK": "MEMBER#NAME#NURALING",
+      "Id": "01GR08SM341WT81HBYYH8G1H9Y",
+      "Name": "NUR ALING",
+      "Nickname": "NUR ALING",
+      "Email": "nuraling07@gmail.com",
+      "Mobile": "087867568555",
+      "Roles": [
+        "parastar/sales"
+      ],
+      "Position": "parastar/sales",
+      "Active": true,
+      "AvailableCompany": [
+        {
+          "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "Name": "PT Parastar Distrindo"
+        }
+      ],
+      "AvailableWarehouse": [
+        {
+          "Id": "01GQVN8A6702R4BVTMX4TH0H0A",
+          "Name": "BO SULAWESI XL LUWU TIMUR"
+        }
+      ],
+      "AvailableWorkarea": [
+        {
+          "Id": "01GMCN68FKTS3P75G0HB42MQXY",
+          "Name": "SULSEL"
+        }
+      ],
+      "SpvName": "Yusuf",
+      "SpvMobile": "081998333338",
+      "SpvEmail": "yusuf.azzam301088@gmail.com",
+      "BranchOffice": "BO SULAWESI XL LUWU TIMUR",
+      "BranchManagerName": "Taufan Prasasti",
+      "BranchManagerEmail": "taufan.prasasti@para-star.com",
+      "BranchManagerMobile": "0818510052",
+      "SettlementFinanceDuration": 1,
+      "SettlementLogisticDuration": 1,
+      "IsCanAttendance": true,
+      "IsCanJourneyVisit": true,
+      "IsCanSettlementFinance": true,
+      "IsCanSettlementLogistic": true,
+      "IsAlreadyAttendance": false,
+      "MinimumRevenue": 812510454,
+      "MinimumAttendance": 24,
+      "MinimumCheckIn": 8,
+      "MinimumVisit": 10,
+      "AssignmentLimit": 40000000,
+      "IsFinanceSettlementComplete": true,
+      "IsProductSettlementComplete": true,
+      "IsAssignmentComplete": true,
+      "MemberType": "SALES",
+      "CreatedTimestamp": "2023-01-30T09:41:13.828571573+07:00",
+      "UpdatedTimestamp": "2023-01-30T09:41:13.828571573+07:00"
+    },
+    {
+      "PK": "MEMBER#01GR08SM34WDN6K8P181PP37TP",
+      "SK": "MEMBER#01GR08SM34WDN6K8P181PP37TP",
+      "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+      "GSI1SK": "MEMBER#01GR08SM34WDN6K8P181PP37TP",
+      "GSI2PK": "EMAIL#sujono.sp11@gmail.com",
+      "GSI2SK": "MEMBER#01GR08SM34WDN6K8P181PP37TP",
+      "GSI3PK": "MEMBERTYPE#SALES",
+      "GSI3SK": "MEMBER#01GR08SM34WDN6K8P181PP37TP",
+      "GSI4PK": "MEMBER#NAME#SUJONO",
+      "GSI4SK": "MEMBER#NAME#SUJONO",
+      "Id": "01GR08SM34WDN6K8P181PP37TP",
+      "Name": "Sujono",
+      "Nickname": "Sujono",
+      "Email": "sujono.sp11@gmail.com",
+      "Mobile": "085946506000",
+      "Roles": [
+        "parastar/sales"
+      ],
+      "Position": "parastar/sales",
+      "Active": true,
+      "AvailableCompany": [
+        {
+          "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "Name": "PT Parastar Distrindo"
+        }
+      ],
+      "AvailableWarehouse": [
+        {
+          "Id": "01GQVN8A6702R4BVTMX4TH0H0A",
+          "Name": "BO SULAWESI XL LUWU TIMUR"
+        }
+      ],
+      "AvailableWorkarea": [
+        {
+          "Id": "01GMCN68FKTS3P75G0HB42MQXY",
+          "Name": "SULSEL"
+        }
+      ],
+      "SpvName": "Yusuf",
+      "SpvMobile": "081998333338",
+      "SpvEmail": "yusuf.azzam301088@gmail.com",
+      "BranchOffice": "BO SULAWESI XL LUWU TIMUR",
+      "BranchManagerName": "Taufan Prasasti",
+      "BranchManagerEmail": "taufan.prasasti@para-star.com",
+      "BranchManagerMobile": "0818510052",
+      "SettlementFinanceDuration": 1,
+      "SettlementLogisticDuration": 1,
+      "IsCanAttendance": true,
+      "IsCanJourneyVisit": true,
+      "IsCanSettlementFinance": true,
+      "IsCanSettlementLogistic": true,
+      "IsAlreadyAttendance": false,
+      "MinimumRevenue": 696590478,
+      "MinimumAttendance": 24,
+      "MinimumCheckIn": 8,
+      "MinimumVisit": 10,
+      "AssignmentLimit": 40000000,
+      "IsFinanceSettlementComplete": true,
+      "IsProductSettlementComplete": true,
+      "IsAssignmentComplete": true,
+      "MemberType": "SALES",
+      "CreatedTimestamp": "2023-01-30T09:41:13.82862348+07:00",
+      "UpdatedTimestamp": "2023-01-30T09:41:13.82862348+07:00"
+    },
+    {
+      "PK": "MEMBER#01GR08SM34HKB4VXGVAP93RZ6D",
+      "SK": "MEMBER#01GR08SM34HKB4VXGVAP93RZ6D",
+      "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+      "GSI1SK": "MEMBER#01GR08SM34HKB4VXGVAP93RZ6D",
+      "GSI2PK": "EMAIL#hafidsamsul94@gmail.com",
+      "GSI2SK": "MEMBER#01GR08SM34HKB4VXGVAP93RZ6D",
+      "GSI3PK": "MEMBERTYPE#SALES",
+      "GSI3SK": "MEMBER#01GR08SM34HKB4VXGVAP93RZ6D",
+      "GSI4PK": "MEMBER#NAME#SYAMSULBAHRIALHAFID",
+      "GSI4SK": "MEMBER#NAME#SYAMSULBAHRIALHAFID",
+      "Id": "01GR08SM34HKB4VXGVAP93RZ6D",
+      "Name": "SYAMSUL BAHRI AL HAFID",
+      "Nickname": "SYAMSUL BAHRI AL HAFID",
+      "Email": "hafidsamsul94@gmail.com",
+      "Mobile": "087857444442",
+      "Roles": [
+        "parastar/sales"
+      ],
+      "Position": "parastar/sales",
+      "Active": true,
+      "AvailableCompany": [
+        {
+          "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "Name": "PT Parastar Distrindo"
+        }
+      ],
+      "AvailableWarehouse": [
+        {
+          "Id": "01GQVN8A6702R4BVTMX4TH0H0A",
+          "Name": "BO SULAWESI XL LUWU TIMUR"
+        }
+      ],
+      "AvailableWorkarea": [
+        {
+          "Id": "01GMCN68FKTS3P75G0HB42MQXY",
+          "Name": "SULSEL"
+        }
+      ],
+      "SpvName": "Yusuf",
+      "SpvMobile": "081998333338",
+      "SpvEmail": "yusuf.azzam301088@gmail.com",
+      "BranchOffice": "BO SULAWESI XL LUWU TIMUR",
+      "BranchManagerName": "Taufan Prasasti",
+      "BranchManagerEmail": "taufan.prasasti@para-star.com",
+      "BranchManagerMobile": "0818510052",
+      "SettlementFinanceDuration": 1,
+      "SettlementLogisticDuration": 1,
+      "IsCanAttendance": true,
+      "IsCanJourneyVisit": true,
+      "IsCanSettlementFinance": true,
+      "IsCanSettlementLogistic": true,
+      "IsAlreadyAttendance": false,
+      "MinimumRevenue": 322134217,
+      "MinimumAttendance": 24,
+      "MinimumCheckIn": 8,
+      "MinimumVisit": 10,
+      "AssignmentLimit": 40000000,
+      "IsFinanceSettlementComplete": true,
+      "IsProductSettlementComplete": true,
+      "IsAssignmentComplete": true,
+      "MemberType": "SALES",
+      "CreatedTimestamp": "2023-01-30T09:41:13.828668622+07:00",
+      "UpdatedTimestamp": "2023-01-30T09:41:13.828668622+07:00"
+    }
+  ]
+}

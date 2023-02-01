@@ -7,7 +7,10 @@ import (
 )
 
 func Route(app fiber.Router) {
-	app.Post("/generate", handler.Generate())
+	app.Post("/sentraponsel/generate", handler.Generate())
+	app.Post("/parastar/generate/sales", handler.GenerateSales())
+	app.Post("/parastar/generate/store", handler.GenerateStore())
+	app.Post("/parastar/generate/user", handler.GenerateUser())
 	// app.Static("/", "./app")
 	app.Static("/", "./swaggerui")
 }

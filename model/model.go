@@ -1,6 +1,9 @@
 package model
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 type Shop struct {
 	Id string
@@ -35,35 +38,39 @@ type Sku struct {
 	DescriptionsMicrosite string
 }
 
-//?KEY
+// ?KEY
 func GetSkuPK(id string) string {
 	return fmt.Sprintf("SHOP#SKU#%s", id)
 }
 func GetSkuSK(id string) string {
 	return fmt.Sprintf("SHOP#SKU#%s", id)
 }
-//?GSI1
+
+// ?GSI1
 func GetSkuGSI1PK(shopId string) string {
 	return fmt.Sprintf("SHOP#%s", shopId)
 }
 func GetSkuGSI1SK(id string) string {
 	return fmt.Sprintf("SHOP#SKU#%s", id)
 }
-//?GSI2
+
+// ?GSI2
 func GetSkuGSI2PK(shopId string) string {
 	return fmt.Sprintf("SHOP#%s", shopId)
 }
 func GetSkuGSI2SK(brandId string) string {
 	return fmt.Sprintf("SHOP#SKU#BRAND#%s", brandId)
 }
-//?GSI3
+
+// ?GSI3
 func GetSkuGSI3PK(shopId string) string {
 	return fmt.Sprintf("SHOP#%s", shopId)
 }
 func GetSkuGSI3SK(typeId string) string {
 	return fmt.Sprintf("SHOP#SKU#TYPE#%s", typeId)
 }
-//?GSI4
+
+// ?GSI4
 func GetSkuGSI4PK(shopId string) string {
 	return fmt.Sprintf("SHOP#%s", shopId)
 }
@@ -83,21 +90,23 @@ type Variant struct {
 	Id     string
 }
 
-//?KEY
+// ?KEY
 func GetVariantPK(id string) string {
 	return fmt.Sprintf("SHOP#VARIANT#%s", id)
 }
 func GetVariantSK(id string) string {
 	return fmt.Sprintf("SHOP#VARIANT#%s", id)
 }
-//?GSI1
+
+// ?GSI1
 func GetVariantGSI1PK(shopId string) string {
 	return fmt.Sprintf("SHOP#%s", shopId)
 }
 func GetVariantGSI1SK(id string) string {
 	return fmt.Sprintf("SHOP#VARIANT#%s", id)
 }
-//?GSI2
+
+// ?GSI2
 func GetVariantGSI2PK(skuId string) string {
 	return fmt.Sprintf("SHOP#VARIANT#SKU#%s", skuId)
 }
@@ -132,31 +141,290 @@ type Image struct {
 	Link string
 }
 
-//?KEY
+// ?KEY
 func GetProductPK(id string) string {
 	return fmt.Sprintf("SHOP#PRODUCT#%s", id)
 }
 func GetProductSK(id string) string {
 	return fmt.Sprintf("SHOP#PRODUCT#%s", id)
 }
-//?GSI1
+
+// ?GSI1
 func GetProductGSI1PK(shopId string) string {
 	return fmt.Sprintf("SHOP#%s", shopId)
 }
 func GetProductGSI1SK(brandId string) string {
 	return fmt.Sprintf("SHOP#PRODUCT#BRAND#%s", brandId)
 }
-//?GSI2
+
+// ?GSI2
 func GetProductGSI2PK(shopId string) string {
 	return fmt.Sprintf("SHOP#%s", shopId)
 }
 func GetProductGSI2SK(typeId string) string {
 	return fmt.Sprintf("SHOP#PRODUCT#TYPE#%s", typeId)
 }
-//?GSI3
+
+// ?GSI3
 func GetProductGSI3PK(shopId string) string {
 	return fmt.Sprintf("SHOP#%s", shopId)
 }
 func GetProductGSI3SK(skuId string) string {
 	return fmt.Sprintf("SHOP#PRODUCT#SKU#%s", skuId)
+}
+
+//! PARASTAR
+
+type Member struct {
+	PK                          *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	SK                          *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI1PK                      *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI1SK                      *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI2PK                      *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI2SK                      *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI3PK                      *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI3SK                      *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI4PK                      *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI4SK                      *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	Id                          *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	Username                    *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	Name                        *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	Nickname                    *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	Email                       *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	Mobile                      *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	Picture                     *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	Roles                       []string                   `json:",omitempty" dynamodbav:",omitempty"`
+	Position                    *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	Active                      *bool                      `json:",omitempty" dynamodbav:",omitempty"`
+	Note                        *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	AvailableCompany            []MemberAvailableCompany   `json:",omitempty" dynamodbav:",omitempty"`
+	AvailableWarehouse          []MemberAvailableWarehouse `json:",omitempty" dynamodbav:",omitempty"`
+	AvailableWorkarea           []MemberAvailableWorkarea  `json:",omitempty" dynamodbav:",omitempty"`
+	WarehouseId                 *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	WarehouseName               *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	SpvName                     *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	SpvMobile                   *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	SpvEmail                    *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	BranchOffice                *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	BranchManagerName           *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	BranchManagerEmail          *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	BranchManagerMobile         *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	SettlementFinanceDuration   *int64                     `json:",omitempty" dynamodbav:",omitempty"`
+	SettlementLogisticDuration  *int64                     `json:",omitempty" dynamodbav:",omitempty"`
+	AssignmentCode              *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	Location                    *map[string]interface{}    `json:",omitempty" dynamodbav:",omitempty"`
+	LastLoginTimestamp          *bool                      `json:",omitempty" dynamodbav:",omitempty"`
+	IsCanAttendance             *bool                      `json:",omitempty" dynamodbav:",omitempty"`
+	IsCanJourneyVisit           *bool                      `json:",omitempty" dynamodbav:",omitempty"`
+	IsCanSettlementFinance      *bool                      `json:",omitempty" dynamodbav:",omitempty"`
+	IsCanSettlementLogistic     *bool                      `json:",omitempty" dynamodbav:",omitempty"`
+	IsAlreadyAttendance         *bool                      `json:",omitempty" dynamodbav:",omitempty"`
+	Latitude                    *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	Longitude                   *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	Status                      *bool                      `json:",omitempty" dynamodbav:",omitempty"`
+	MinimumRevenue              *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	MinimumAttendance           *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	MinimumCheckIn              *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	MinimumVisit                *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	TotalAttendance             *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	TotalVisit                  *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	TotalCheckIn                *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	TotalRevenue                *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	TotalOrderUnPaid            *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	TotalOrderPaid              *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	TotalInvoicePaid            *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	TotalInvoiceUnPaid          *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	TotalDeliveryUndelivered    *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	TotalDeliveryDelivered      *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	TotalOpenIssue              *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	TotalPendingIssue           *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	TotalCloseIssue             *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	AssignmentLimit             float64                    `json:",omitempty" dynamodbav:",omitempty"`
+	IsFinanceSettlementComplete *bool                      `json:",omitempty" dynamodbav:",omitempty"`
+	IsProductSettlementComplete *bool                      `json:",omitempty" dynamodbav:",omitempty"`
+	IsAssignmentComplete        *bool                      `json:",omitempty" dynamodbav:",omitempty"`
+	TotalAssignmentPrice        float64                    `json:",omitempty" dynamodbav:",omitempty"`
+	Rating                      *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	HighestSales                *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	Loyality                    *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	CompletedJourney            *float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	Achievements                *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	MemberType                  *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	UserPoolID                  *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	DeviceId                    *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	AttendanceId                *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	FinanceSettlementId         *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	ProductSettlementId         *string                    `json:",omitempty" dynamodbav:",omitempty"`
+	CreatedTimestamp            *time.Time                 `json:",omitempty" dynamodbav:",omitempty"`
+	UpdatedTimestamp            *time.Time                 `json:",omitempty" dynamodbav:",omitempty"`
+}
+
+type MemberAvailableCompany struct {
+	Id   *string `json:",omitempty" dynamodbav:",omitempty"`
+	Name *string `json:",omitempty" dynamodbav:",omitempty"`
+}
+
+type MemberAvailableWarehouse struct {
+	Id   *string `json:",omitempty" dynamodbav:",omitempty"`
+	Name *string `json:",omitempty" dynamodbav:",omitempty"`
+}
+
+type MemberAvailableWorkarea struct {
+	Id   *string `json:",omitempty" dynamodbav:",omitempty"`
+	Name *string `json:",omitempty" dynamodbav:",omitempty"`
+}
+
+const (
+	MemberPk     = "MEMBER"
+	MemberSk     = "MEMBER"
+	MemberGsi1Pk = "COMPANY"
+	MemberGsi1Sk = "MEMBER"
+	MemberGsi2Pk = "EMAIL"
+	MemberGsi2Sk = "MEMBER"
+	MemberGsi3Pk = "MEMBERTYPE"
+	MemberGsi3Sk = "MEMBER"
+	MemberGsi4Pk = "MEMBER#NAME"
+	MemberGsi4Sk = "MEMBER#NAME"
+)
+
+func BuildMemberPk(id string) (pk string) {
+	return fmt.Sprintf("%s#%s", MemberPk, id)
+}
+
+func BuildMemberSk(id string) (pk string) {
+	return fmt.Sprintf("%s#%s", MemberSk, id)
+}
+
+func BuildMemberGsi1Pk(companyId string) (pk string) {
+	return fmt.Sprintf("%s#%s", MemberGsi1Pk, companyId)
+}
+
+func BuildMemberGsi1Sk(id string) (pk string) {
+	return fmt.Sprintf("%s#%s", MemberGsi1Sk, id)
+}
+
+func BuildMemberGsi2Pk(email string) (pk string) {
+	return fmt.Sprintf("%s#%s", MemberGsi2Pk, email)
+}
+
+func BuildMemberGsi2Sk(id string) (pk string) {
+	return fmt.Sprintf("%s#%s", MemberGsi2Sk, id)
+}
+
+func BuildMemberGsi3Pk(memberType string) (pk string) {
+	return fmt.Sprintf("%s#%s", MemberGsi3Pk, memberType)
+}
+
+func BuildMemberGsi3Sk(id string) (pk string) {
+	return fmt.Sprintf("%s#%s", MemberGsi3Sk, id)
+}
+
+func BuildMemberGsi4Pk(name string) (pk string) {
+	return fmt.Sprintf("%s#%s", MemberGsi4Pk, name)
+}
+
+func BuildMemberGsi4Sk(name string) (pk string) {
+	return fmt.Sprintf("%s#%s", MemberGsi4Sk, name)
+}
+
+type Store struct {
+	PK                       *string    `json:",omitempty" dynamodbav:",omitempty"`
+	SK                       *string    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI1PK                   *string    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI1SK                   *string    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI2PK                   *string    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI2SK                   *string    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI3PK                   *string    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI3SK                   *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Id                       *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Name                     *string    `json:",omitempty" dynamodbav:",omitempty"`
+	ParentName               *string    `json:",omitempty" dynamodbav:",omitempty"`
+	ParentId                 *string    `json:",omitempty" dynamodbav:",omitempty"`
+	ParentNoChip             *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Mobile                   *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Email                    *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Type                     *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Address                  *string    `json:",omitempty" dynamodbav:",omitempty"`
+	City                     *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Province                 *string    `json:",omitempty" dynamodbav:",omitempty"`
+	District                 *string    `json:",omitempty" dynamodbav:",omitempty"`
+	PostalCode               *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Longitude                *float64   `json:",omitempty" dynamodbav:",omitempty"`
+	Latitude                 *float64   `json:",omitempty" dynamodbav:",omitempty"`
+	NoKtp                    *string    `json:",omitempty" dynamodbav:",omitempty"`
+	NoChip                   *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Npwp                     *string    `json:",omitempty" dynamodbav:",omitempty"`
+	NpwpAddress              *string    `json:",omitempty" dynamodbav:",omitempty"`
+	PictKtp                  *string    `json:",omitempty" dynamodbav:",omitempty"`
+	PictNpwp                 *string    `json:",omitempty" dynamodbav:",omitempty"`
+	PictStore                *string    `json:",omitempty" dynamodbav:",omitempty"`
+	PicMobile                *string    `json:",omitempty" dynamodbav:",omitempty"`
+	PicName                  *string    `json:",omitempty" dynamodbav:",omitempty"`
+	OwnerName                *string    `json:",omitempty" dynamodbav:",omitempty"`
+	OwnerMobile              *string    `json:",omitempty" dynamodbav:",omitempty"`
+	OwnerEmail               *string    `json:",omitempty" dynamodbav:",omitempty"`
+	OwnerBankName            *string    `json:",omitempty" dynamodbav:",omitempty"`
+	OwnerNoRek               *string    `json:",omitempty" dynamodbav:",omitempty"`
+	OwnerBankAccountName     *string    `json:",omitempty" dynamodbav:",omitempty"`
+	OwnerAddress             *string    `json:",omitempty" dynamodbav:",omitempty"`
+	TypeData                 *string    `json:",omitempty" dynamodbav:",omitempty"`
+	PriceType                *string    `json:",omitempty" dynamodbav:",omitempty"`
+	HashKey                  *uint64    `json:",omitempty" dynamodbav:",omitempty"`
+	GeoHash                  *uint64    `json:",omitempty" dynamodbav:",omitempty"`
+	IsApprove                *bool      `json:",omitempty" dynamodbav:",omitempty"`
+	IsCanTop                 *bool      `json:",omitempty" dynamodbav:",omitempty"`
+	IsCanConsignment         *bool      `json:",omitempty" dynamodbav:",omitempty"`
+	IsAlreadyHaveConsignment *bool      `json:",omitempty" dynamodbav:",omitempty"`
+	IsAlreadyHaveTop         *bool      `json:",omitempty" dynamodbav:",omitempty"`
+	UpdatedById              *string    `json:",omitempty" dynamodbav:",omitempty"`
+	UpdatedByName            *string    `json:",omitempty" dynamodbav:",omitempty"`
+	CreateById               *string    `json:",omitempty" dynamodbav:",omitempty"`
+	CreateByName             *string    `json:",omitempty" dynamodbav:",omitempty"`
+	TopDuration              *int64     `json:",omitempty" dynamodbav:",omitempty"`
+	ConsignmentDuration      *int64     `json:",omitempty" dynamodbav:",omitempty"`
+	Top                      *float64   `json:",omitempty" dynamodbav:",omitempty"`
+	Consignment              *float64   `json:",omitempty" dynamodbav:",omitempty"`
+	Limit                    *float64   `json:",omitempty" dynamodbav:",omitempty"`
+	IsSubStore               *bool      `json:",omitempty" dynamodbav:",omitempty"`
+	TaxDocument              *string    `json:",omitempty" dynamodbav:",omitempty"`
+	TaxDocumentValidDate     *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Active                   *bool      `json:",omitempty" dynamodbav:",omitempty"`
+	ExclusivePayment         []string   `json:",omitempty" dynamodbav:",omitempty"`
+	CreatedTimestamp         *time.Time `json:",omitempty" dynamodbav:",omitempty"`
+	UpdatedTimestamp         *time.Time `json:",omitempty" dynamodbav:",omitempty"`
+}
+
+const (
+	StorePk     = "STORE"
+	StoreSk     = "STORE"
+	StoreGsi1Pk = "STORE#COMPANY"
+	StoreGsi2Pk = "STORE#NAME"
+	StoreGsi2Sk = "STORE#NOCHIP"
+	StoreGsi3Pk = "STORE#NOCHIP"
+	StoreGsi3Sk = "STORE#NOCHIP"
+)
+
+func BuildStorePk(id string) (pk string) {
+	return fmt.Sprintf("%s#%s", StorePk, id)
+}
+func BuildStoreSk(id string) (pk string) {
+	return fmt.Sprintf("%s#%s", StoreSk, id)
+}
+func BuildStoreGsi1Pk(companyId string, hashKey string) (pk string) {
+	return fmt.Sprintf("%s#%s#HASH#%s", StoreGsi1Pk, companyId, hashKey)
+}
+func BuildStoreGsi1Sk(geoHash string) (pk string) {
+	return fmt.Sprintf("%s", geoHash)
+}
+func BuildStoreGsi2Pk(name string) (pk string) {
+	return fmt.Sprintf("%s#%s", StoreGsi2Pk, name)
+}
+func BuildStoreGsi2Sk(noChip string) (pk string) {
+	return fmt.Sprintf("%s#%s", StoreGsi2Sk, noChip)
+}
+func BuildStoreGsi3Pk(noChip string) (pk string) {
+	return fmt.Sprintf("%s#%s", StoreGsi3Pk, noChip)
+}
+func BuildStoreGsi3Sk(noChip string) (pk string) {
+	return fmt.Sprintf("%s#%s", StoreGsi3Sk, noChip)
 }

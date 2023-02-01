@@ -1,0 +1,719 @@
+{
+  "Sales": [
+      {
+          "PK": "MEMBER#01GR0RX93SJMJVXX4EP55EZPNT",
+          "SK": "MEMBER#01GR0RX93SJMJVXX4EP55EZPNT",
+          "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "GSI1SK": "MEMBER#01GR0RX93SJMJVXX4EP55EZPNT",
+          "GSI2PK": "EMAIL#ade.imran24@gmail.com",
+          "GSI2SK": "MEMBER#01GR0RX93SJMJVXX4EP55EZPNT",
+          "GSI3PK": "MEMBERTYPE#SALES",
+          "GSI3SK": "MEMBER#01GR0RX93SJMJVXX4EP55EZPNT",
+          "GSI4PK": "MEMBER#NAME#ADEIMRAN",
+          "GSI4SK": "MEMBER#NAME#ADEIMRAN",
+          "Id": "01GR0RX93SJMJVXX4EP55EZPNT",
+          "Name": "Ade Imran",
+          "Nickname": "Ade Imran",
+          "Email": "ade.imran24@gmail.com",
+          "Mobile": "087842297779",
+          "Roles": [
+              "parastar/sales"
+          ],
+          "Position": "parastar/sales",
+          "Active": true,
+          "AvailableCompany": [
+              {
+                  "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+                  "Name": "PT Parastar Distrindo"
+              }
+          ],
+          "AvailableWarehouse": [
+              {
+                  "Id": "01GMFQ5CMG5JPVF9AFM7QSPB8G",
+                  "Name": "BO JTM XL BONE"
+              }
+          ],
+          "AvailableWorkarea": [
+              {
+                  "Id": "01GMCN68GV8SVMBZ7W4JWGRR29",
+                  "Name": "GREATER MADIUN"
+              }
+          ],
+          "SpvName": "Baharuddin ",
+          "SpvMobile": "087850818999",
+          "SpvEmail": "baharuddin@para-star.com",
+          "BranchOffice": "BO SULAWESI XL BONE",
+          "BranchManagerName": "SAHARUDDIN ",
+          "BranchManagerEmail": "saharuddin@para-star.com",
+          "BranchManagerMobile": "081991700001",
+          "SettlementFinanceDuration": 1,
+          "SettlementLogisticDuration": 1,
+          "IsCanAttendance": true,
+          "IsCanJourneyVisit": true,
+          "IsCanSettlementFinance": true,
+          "IsCanSettlementLogistic": true,
+          "IsAlreadyAttendance": false,
+          "MinimumRevenue": 1017673352,
+          "MinimumAttendance": 24,
+          "MinimumCheckIn": 9,
+          "MinimumVisit": 12,
+          "AssignmentLimit": 50000000,
+          "IsFinanceSettlementComplete": true,
+          "IsProductSettlementComplete": true,
+          "IsAssignmentComplete": true,
+          "MemberType": "SALES",
+          "CreatedTimestamp": "2023-01-30T14:22:50.873832411+07:00",
+          "UpdatedTimestamp": "2023-01-30T14:22:50.873832411+07:00"
+      },
+      {
+          "PK": "MEMBER#01GR0RX93TBR6CEWZ4AMEPQGBP",
+          "SK": "MEMBER#01GR0RX93TBR6CEWZ4AMEPQGBP",
+          "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "GSI1SK": "MEMBER#01GR0RX93TBR6CEWZ4AMEPQGBP",
+          "GSI2PK": "EMAIL#adielahkam45@gmail.com",
+          "GSI2SK": "MEMBER#01GR0RX93TBR6CEWZ4AMEPQGBP",
+          "GSI3PK": "MEMBERTYPE#SALES",
+          "GSI3SK": "MEMBER#01GR0RX93TBR6CEWZ4AMEPQGBP",
+          "GSI4PK": "MEMBER#NAME#ADIL",
+          "GSI4SK": "MEMBER#NAME#ADIL",
+          "Id": "01GR0RX93TBR6CEWZ4AMEPQGBP",
+          "Name": "Adil",
+          "Nickname": "Adil",
+          "Email": "adielahkam45@gmail.com",
+          "Mobile": "081933788885",
+          "Roles": [
+              "parastar/sales"
+          ],
+          "Position": "parastar/sales",
+          "Active": true,
+          "AvailableCompany": [
+              {
+                  "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+                  "Name": "PT Parastar Distrindo"
+              }
+          ],
+          "AvailableWarehouse": [
+              {
+                  "Id": "01GMFQ5CMG5JPVF9AFM7QSPB8G",
+                  "Name": "BO JTM XL BONE"
+              }
+          ],
+          "AvailableWorkarea": [
+              {
+                  "Id": "01GMCN68GV8SVMBZ7W4JWGRR29",
+                  "Name": "GREATER MADIUN"
+              }
+          ],
+          "SpvName": "Baharuddin ",
+          "SpvMobile": "087850818999",
+          "SpvEmail": "baharuddin@para-star.com",
+          "BranchOffice": "BO SULAWESI XL BONE",
+          "BranchManagerName": "SAHARUDDIN ",
+          "BranchManagerEmail": "saharuddin@para-star.com",
+          "BranchManagerMobile": "081991700001",
+          "SettlementFinanceDuration": 1,
+          "SettlementLogisticDuration": 1,
+          "IsCanAttendance": true,
+          "IsCanJourneyVisit": true,
+          "IsCanSettlementFinance": true,
+          "IsCanSettlementLogistic": true,
+          "IsAlreadyAttendance": false,
+          "MinimumRevenue": 545005810,
+          "MinimumAttendance": 24,
+          "MinimumCheckIn": 9,
+          "MinimumVisit": 12,
+          "AssignmentLimit": 50000000,
+          "IsFinanceSettlementComplete": true,
+          "IsProductSettlementComplete": true,
+          "IsAssignmentComplete": true,
+          "MemberType": "SALES",
+          "CreatedTimestamp": "2023-01-30T14:22:50.874153035+07:00",
+          "UpdatedTimestamp": "2023-01-30T14:22:50.874153035+07:00"
+      },
+      {
+          "PK": "MEMBER#01GR0RX93T1W97BWWCTTR4Q8P8",
+          "SK": "MEMBER#01GR0RX93T1W97BWWCTTR4Q8P8",
+          "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "GSI1SK": "MEMBER#01GR0RX93T1W97BWWCTTR4Q8P8",
+          "GSI2PK": "EMAIL#amriberjaya98@gmail.com",
+          "GSI2SK": "MEMBER#01GR0RX93T1W97BWWCTTR4Q8P8",
+          "GSI3PK": "MEMBERTYPE#SALES",
+          "GSI3SK": "MEMBER#01GR0RX93T1W97BWWCTTR4Q8P8",
+          "GSI4PK": "MEMBER#NAME#AMRI",
+          "GSI4SK": "MEMBER#NAME#AMRI",
+          "Id": "01GR0RX93T1W97BWWCTTR4Q8P8",
+          "Name": "AMRI",
+          "Nickname": "AMRI",
+          "Email": "amriberjaya98@gmail.com",
+          "Mobile": "087874444400",
+          "Roles": [
+              "parastar/sales"
+          ],
+          "Position": "parastar/sales",
+          "Active": true,
+          "AvailableCompany": [
+              {
+                  "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+                  "Name": "PT Parastar Distrindo"
+              }
+          ],
+          "AvailableWarehouse": [
+              {
+                  "Id": "01GMFQ5CMG5JPVF9AFM7QSPB8G",
+                  "Name": "BO JTM XL BONE"
+              }
+          ],
+          "AvailableWorkarea": [
+              {
+                  "Id": "01GMCN68GV8SVMBZ7W4JWGRR29",
+                  "Name": "GREATER MADIUN"
+              }
+          ],
+          "SpvName": "Baharuddin ",
+          "SpvMobile": "087850818999",
+          "SpvEmail": "baharuddin@para-star.com",
+          "BranchOffice": "BO SULAWESI XL BONE",
+          "BranchManagerName": "SAHARUDDIN ",
+          "BranchManagerEmail": "saharuddin@para-star.com",
+          "BranchManagerMobile": "081991700001",
+          "SettlementFinanceDuration": 1,
+          "SettlementLogisticDuration": 1,
+          "IsCanAttendance": true,
+          "IsCanJourneyVisit": true,
+          "IsCanSettlementFinance": true,
+          "IsCanSettlementLogistic": true,
+          "IsAlreadyAttendance": false,
+          "MinimumRevenue": 540533761,
+          "MinimumAttendance": 24,
+          "MinimumCheckIn": 9,
+          "MinimumVisit": 12,
+          "AssignmentLimit": 50000000,
+          "IsFinanceSettlementComplete": true,
+          "IsProductSettlementComplete": true,
+          "IsAssignmentComplete": true,
+          "MemberType": "SALES",
+          "CreatedTimestamp": "2023-01-30T14:22:50.874303157+07:00",
+          "UpdatedTimestamp": "2023-01-30T14:22:50.874303157+07:00"
+      },
+      {
+          "PK": "MEMBER#01GR0RX93TH0E5YJJEY4NAJPPZ",
+          "SK": "MEMBER#01GR0RX93TH0E5YJJEY4NAJPPZ",
+          "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "GSI1SK": "MEMBER#01GR0RX93TH0E5YJJEY4NAJPPZ",
+          "GSI2PK": "EMAIL#andymuhammad8320@gmail.com",
+          "GSI2SK": "MEMBER#01GR0RX93TH0E5YJJEY4NAJPPZ",
+          "GSI3PK": "MEMBERTYPE#SALES",
+          "GSI3SK": "MEMBER#01GR0RX93TH0E5YJJEY4NAJPPZ",
+          "GSI4PK": "MEMBER#NAME#ANDIMUHAMMADICHSANNULAQSA",
+          "GSI4SK": "MEMBER#NAME#ANDIMUHAMMADICHSANNULAQSA",
+          "Id": "01GR0RX93TH0E5YJJEY4NAJPPZ",
+          "Name": "ANDI MUHAMMAD ICHSANNUL AQSA",
+          "Nickname": "ANDI MUHAMMAD ICHSANNUL AQSA",
+          "Email": "andymuhammad8320@gmail.com",
+          "Mobile": "087777423000",
+          "Roles": [
+              "parastar/sales"
+          ],
+          "Position": "parastar/sales",
+          "Active": true,
+          "AvailableCompany": [
+              {
+                  "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+                  "Name": "PT Parastar Distrindo"
+              }
+          ],
+          "AvailableWarehouse": [
+              {
+                  "Id": "01GMFQ5CMG5JPVF9AFM7QSPB8G",
+                  "Name": "BO JTM XL BONE"
+              }
+          ],
+          "AvailableWorkarea": [
+              {
+                  "Id": "01GMCN68GV8SVMBZ7W4JWGRR29",
+                  "Name": "GREATER MADIUN"
+              }
+          ],
+          "SpvName": "Baharuddin ",
+          "SpvMobile": "087850818999",
+          "SpvEmail": "baharuddin@para-star.com",
+          "BranchOffice": "BO SULAWESI XL BONE",
+          "BranchManagerName": "SAHARUDDIN ",
+          "BranchManagerEmail": "saharuddin@para-star.com",
+          "BranchManagerMobile": "081991700001",
+          "SettlementFinanceDuration": 1,
+          "SettlementLogisticDuration": 1,
+          "IsCanAttendance": true,
+          "IsCanJourneyVisit": true,
+          "IsCanSettlementFinance": true,
+          "IsCanSettlementLogistic": true,
+          "IsAlreadyAttendance": false,
+          "MinimumRevenue": 417476411,
+          "MinimumAttendance": 24,
+          "MinimumCheckIn": 9,
+          "MinimumVisit": 12,
+          "AssignmentLimit": 40000000,
+          "IsFinanceSettlementComplete": true,
+          "IsProductSettlementComplete": true,
+          "IsAssignmentComplete": true,
+          "MemberType": "SALES",
+          "CreatedTimestamp": "2023-01-30T14:22:50.874465072+07:00",
+          "UpdatedTimestamp": "2023-01-30T14:22:50.874465072+07:00"
+      },
+      {
+          "PK": "MEMBER#01GR0RX93T8ZE2PBF4AW27ZW3Y",
+          "SK": "MEMBER#01GR0RX93T8ZE2PBF4AW27ZW3Y",
+          "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "GSI1SK": "MEMBER#01GR0RX93T8ZE2PBF4AW27ZW3Y",
+          "GSI2PK": "EMAIL#anugrahnuge73@gmail.com",
+          "GSI2SK": "MEMBER#01GR0RX93T8ZE2PBF4AW27ZW3Y",
+          "GSI3PK": "MEMBERTYPE#SALES",
+          "GSI3SK": "MEMBER#01GR0RX93T8ZE2PBF4AW27ZW3Y",
+          "GSI4PK": "MEMBER#NAME#ANUGRAHSETIAALIMHAR",
+          "GSI4SK": "MEMBER#NAME#ANUGRAHSETIAALIMHAR",
+          "Id": "01GR0RX93T8ZE2PBF4AW27ZW3Y",
+          "Name": "Anugrah Setia Alimhar",
+          "Nickname": "Anugrah Setia Alimhar",
+          "Email": "anugrahnuge73@gmail.com",
+          "Mobile": "087895785978",
+          "Roles": [
+              "parastar/sales"
+          ],
+          "Position": "parastar/sales",
+          "Active": true,
+          "AvailableCompany": [
+              {
+                  "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+                  "Name": "PT Parastar Distrindo"
+              }
+          ],
+          "AvailableWarehouse": [
+              {
+                  "Id": "01GMFQ5CMG5JPVF9AFM7QSPB8G",
+                  "Name": "BO JTM XL BONE"
+              }
+          ],
+          "AvailableWorkarea": [
+              {
+                  "Id": "01GMCN68GV8SVMBZ7W4JWGRR29",
+                  "Name": "GREATER MADIUN"
+              }
+          ],
+          "SpvName": "Baharuddin ",
+          "SpvMobile": "087850818999",
+          "SpvEmail": "baharuddin@para-star.com",
+          "BranchOffice": "BO SULAWESI XL BONE",
+          "BranchManagerName": "SAHARUDDIN ",
+          "BranchManagerEmail": "saharuddin@para-star.com",
+          "BranchManagerMobile": "081991700001",
+          "SettlementFinanceDuration": 1,
+          "SettlementLogisticDuration": 1,
+          "IsCanAttendance": true,
+          "IsCanJourneyVisit": true,
+          "IsCanSettlementFinance": true,
+          "IsCanSettlementLogistic": true,
+          "IsAlreadyAttendance": false,
+          "MinimumRevenue": 801347090,
+          "MinimumAttendance": 24,
+          "MinimumCheckIn": 9,
+          "MinimumVisit": 12,
+          "AssignmentLimit": 50000000,
+          "IsFinanceSettlementComplete": true,
+          "IsProductSettlementComplete": true,
+          "IsAssignmentComplete": true,
+          "MemberType": "SALES",
+          "CreatedTimestamp": "2023-01-30T14:22:50.874604366+07:00",
+          "UpdatedTimestamp": "2023-01-30T14:22:50.874604366+07:00"
+      },
+      {
+          "PK": "MEMBER#01GR0RX93T9GB5ZZBNBD9XE65V",
+          "SK": "MEMBER#01GR0RX93T9GB5ZZBNBD9XE65V",
+          "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "GSI1SK": "MEMBER#01GR0RX93T9GB5ZZBNBD9XE65V",
+          "GSI2PK": "EMAIL#hendra.yusriadi@gmail.com",
+          "GSI2SK": "MEMBER#01GR0RX93T9GB5ZZBNBD9XE65V",
+          "GSI3PK": "MEMBERTYPE#SALES",
+          "GSI3SK": "MEMBER#01GR0RX93T9GB5ZZBNBD9XE65V",
+          "GSI4PK": "MEMBER#NAME#HENDRA",
+          "GSI4SK": "MEMBER#NAME#HENDRA",
+          "Id": "01GR0RX93T9GB5ZZBNBD9XE65V",
+          "Name": "Hendra",
+          "Nickname": "Hendra",
+          "Email": "hendra.yusriadi@gmail.com",
+          "Mobile": "087701033155",
+          "Roles": [
+              "parastar/sales"
+          ],
+          "Position": "parastar/sales",
+          "Active": true,
+          "AvailableCompany": [
+              {
+                  "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+                  "Name": "PT Parastar Distrindo"
+              }
+          ],
+          "AvailableWarehouse": [
+              {
+                  "Id": "01GMFQ5CMG5JPVF9AFM7QSPB8G",
+                  "Name": "BO JTM XL BONE"
+              }
+          ],
+          "AvailableWorkarea": [
+              {
+                  "Id": "01GMCN68GV8SVMBZ7W4JWGRR29",
+                  "Name": "GREATER MADIUN"
+              }
+          ],
+          "SpvName": "Baharuddin ",
+          "SpvMobile": "087850818999",
+          "SpvEmail": "baharuddin@para-star.com",
+          "BranchOffice": "BO SULAWESI XL BONE",
+          "BranchManagerName": "SAHARUDDIN ",
+          "BranchManagerEmail": "saharuddin@para-star.com",
+          "BranchManagerMobile": "081991700001",
+          "SettlementFinanceDuration": 1,
+          "SettlementLogisticDuration": 1,
+          "IsCanAttendance": true,
+          "IsCanJourneyVisit": true,
+          "IsCanSettlementFinance": true,
+          "IsCanSettlementLogistic": true,
+          "IsAlreadyAttendance": false,
+          "MinimumRevenue": 497416524,
+          "MinimumAttendance": 24,
+          "MinimumCheckIn": 9,
+          "MinimumVisit": 12,
+          "AssignmentLimit": 50000000,
+          "IsFinanceSettlementComplete": true,
+          "IsProductSettlementComplete": true,
+          "IsAssignmentComplete": true,
+          "MemberType": "SALES",
+          "CreatedTimestamp": "2023-01-30T14:22:50.874743976+07:00",
+          "UpdatedTimestamp": "2023-01-30T14:22:50.874743976+07:00"
+      },
+      {
+          "PK": "MEMBER#01GR0RX93T4HQCN54HVNT5FY91",
+          "SK": "MEMBER#01GR0RX93T4HQCN54HVNT5FY91",
+          "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "GSI1SK": "MEMBER#01GR0RX93T4HQCN54HVNT5FY91",
+          "GSI2PK": "EMAIL#b14.jamaluddin.b.073@gmail.com",
+          "GSI2SK": "MEMBER#01GR0RX93T4HQCN54HVNT5FY91",
+          "GSI3PK": "MEMBERTYPE#SALES",
+          "GSI3SK": "MEMBER#01GR0RX93T4HQCN54HVNT5FY91",
+          "GSI4PK": "MEMBER#NAME#JAMALUDDINB",
+          "GSI4SK": "MEMBER#NAME#JAMALUDDINB",
+          "Id": "01GR0RX93T4HQCN54HVNT5FY91",
+          "Name": "Jamaluddin.b",
+          "Nickname": "Jamaluddin.b",
+          "Email": "b14.jamaluddin.b.073@gmail.com",
+          "Mobile": "081914235541",
+          "Roles": [
+              "parastar/sales"
+          ],
+          "Position": "parastar/sales",
+          "Active": true,
+          "AvailableCompany": [
+              {
+                  "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+                  "Name": "PT Parastar Distrindo"
+              }
+          ],
+          "AvailableWarehouse": [
+              {
+                  "Id": "01GMFQ5CMG5JPVF9AFM7QSPB8G",
+                  "Name": "BO JTM XL BONE"
+              }
+          ],
+          "AvailableWorkarea": [
+              {
+                  "Id": "01GMCN68GV8SVMBZ7W4JWGRR29",
+                  "Name": "GREATER MADIUN"
+              }
+          ],
+          "SpvName": "Baharuddin ",
+          "SpvMobile": "087850818999",
+          "SpvEmail": "baharuddin@para-star.com",
+          "BranchOffice": "BO SULAWESI XL BONE",
+          "BranchManagerName": "SAHARUDDIN ",
+          "BranchManagerEmail": "saharuddin@para-star.com",
+          "BranchManagerMobile": "081991700001",
+          "SettlementFinanceDuration": 1,
+          "SettlementLogisticDuration": 1,
+          "IsCanAttendance": true,
+          "IsCanJourneyVisit": true,
+          "IsCanSettlementFinance": true,
+          "IsCanSettlementLogistic": true,
+          "IsAlreadyAttendance": false,
+          "MinimumRevenue": 739870608,
+          "MinimumAttendance": 24,
+          "MinimumCheckIn": 9,
+          "MinimumVisit": 12,
+          "AssignmentLimit": 50000000,
+          "IsFinanceSettlementComplete": true,
+          "IsProductSettlementComplete": true,
+          "IsAssignmentComplete": true,
+          "MemberType": "SALES",
+          "CreatedTimestamp": "2023-01-30T14:22:50.874882555+07:00",
+          "UpdatedTimestamp": "2023-01-30T14:22:50.874882555+07:00"
+      },
+      {
+          "PK": "MEMBER#01GR0RX93V51QYBNWBEH6K9Q91",
+          "SK": "MEMBER#01GR0RX93V51QYBNWBEH6K9Q91",
+          "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "GSI1SK": "MEMBER#01GR0RX93V51QYBNWBEH6K9Q91",
+          "GSI2PK": "EMAIL#taufikmuh635@gmail.com",
+          "GSI2SK": "MEMBER#01GR0RX93V51QYBNWBEH6K9Q91",
+          "GSI3PK": "MEMBERTYPE#SALES",
+          "GSI3SK": "MEMBER#01GR0RX93V51QYBNWBEH6K9Q91",
+          "GSI4PK": "MEMBER#NAME#MUHTAUFIK",
+          "GSI4SK": "MEMBER#NAME#MUHTAUFIK",
+          "Id": "01GR0RX93V51QYBNWBEH6K9Q91",
+          "Name": "Muh Taufik ",
+          "Nickname": "Muh Taufik ",
+          "Email": "taufikmuh635@gmail.com",
+          "Mobile": "085979522777",
+          "Roles": [
+              "parastar/sales"
+          ],
+          "Position": "parastar/sales",
+          "Active": true,
+          "AvailableCompany": [
+              {
+                  "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+                  "Name": "PT Parastar Distrindo"
+              }
+          ],
+          "AvailableWarehouse": [
+              {
+                  "Id": "01GMFQ5CMG5JPVF9AFM7QSPB8G",
+                  "Name": "BO JTM XL BONE"
+              }
+          ],
+          "AvailableWorkarea": [
+              {
+                  "Id": "01GMCN68GV8SVMBZ7W4JWGRR29",
+                  "Name": "GREATER MADIUN"
+              }
+          ],
+          "SpvName": "Baharuddin ",
+          "SpvMobile": "087850818999",
+          "SpvEmail": "baharuddin@para-star.com",
+          "BranchOffice": "BO SULAWESI XL BONE",
+          "BranchManagerName": "SAHARUDDIN ",
+          "BranchManagerEmail": "saharuddin@para-star.com",
+          "BranchManagerMobile": "081991700001",
+          "SettlementFinanceDuration": 1,
+          "SettlementLogisticDuration": 1,
+          "IsCanAttendance": true,
+          "IsCanJourneyVisit": true,
+          "IsCanSettlementFinance": true,
+          "IsCanSettlementLogistic": true,
+          "IsAlreadyAttendance": false,
+          "MinimumRevenue": 511967540,
+          "MinimumAttendance": 24,
+          "MinimumCheckIn": 9,
+          "MinimumVisit": 12,
+          "AssignmentLimit": 50000000,
+          "IsFinanceSettlementComplete": true,
+          "IsProductSettlementComplete": true,
+          "IsAssignmentComplete": true,
+          "MemberType": "SALES",
+          "CreatedTimestamp": "2023-01-30T14:22:50.875013041+07:00",
+          "UpdatedTimestamp": "2023-01-30T14:22:50.875013041+07:00"
+      },
+      {
+          "PK": "MEMBER#01GR0RX93V2675AZJ0EGS0RZHM",
+          "SK": "MEMBER#01GR0RX93V2675AZJ0EGS0RZHM",
+          "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "GSI1SK": "MEMBER#01GR0RX93V2675AZJ0EGS0RZHM",
+          "GSI2PK": "EMAIL#saldirisal86@gmail.com",
+          "GSI2SK": "MEMBER#01GR0RX93V2675AZJ0EGS0RZHM",
+          "GSI3PK": "MEMBERTYPE#SALES",
+          "GSI3SK": "MEMBER#01GR0RX93V2675AZJ0EGS0RZHM",
+          "GSI4PK": "MEMBER#NAME#RISALDI",
+          "GSI4SK": "MEMBER#NAME#RISALDI",
+          "Id": "01GR0RX93V2675AZJ0EGS0RZHM",
+          "Name": "RISALDI",
+          "Nickname": "RISALDI",
+          "Email": "saldirisal86@gmail.com",
+          "Mobile": "087714347788",
+          "Roles": [
+              "parastar/sales"
+          ],
+          "Position": "parastar/sales",
+          "Active": true,
+          "AvailableCompany": [
+              {
+                  "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+                  "Name": "PT Parastar Distrindo"
+              }
+          ],
+          "AvailableWarehouse": [
+              {
+                  "Id": "01GMFQ5CMG5JPVF9AFM7QSPB8G",
+                  "Name": "BO JTM XL BONE"
+              }
+          ],
+          "AvailableWorkarea": [
+              {
+                  "Id": "01GMCN68GV8SVMBZ7W4JWGRR29",
+                  "Name": "GREATER MADIUN"
+              }
+          ],
+          "SpvName": "Baharuddin ",
+          "SpvMobile": "087850818999",
+          "SpvEmail": "baharuddin@para-star.com",
+          "BranchOffice": "BO SULAWESI XL BONE",
+          "BranchManagerName": "SAHARUDDIN ",
+          "BranchManagerEmail": "saharuddin@para-star.com",
+          "BranchManagerMobile": "081991700001",
+          "SettlementFinanceDuration": 1,
+          "SettlementLogisticDuration": 1,
+          "IsCanAttendance": true,
+          "IsCanJourneyVisit": true,
+          "IsCanSettlementFinance": true,
+          "IsCanSettlementLogistic": true,
+          "IsAlreadyAttendance": false,
+          "MinimumRevenue": 429206952,
+          "MinimumAttendance": 24,
+          "MinimumCheckIn": 9,
+          "MinimumVisit": 12,
+          "AssignmentLimit": 50000000,
+          "IsFinanceSettlementComplete": true,
+          "IsProductSettlementComplete": true,
+          "IsAssignmentComplete": true,
+          "MemberType": "SALES",
+          "CreatedTimestamp": "2023-01-30T14:22:50.875146766+07:00",
+          "UpdatedTimestamp": "2023-01-30T14:22:50.875146766+07:00"
+      },
+      {
+          "PK": "MEMBER#01GR0RX93VADT7Y09EW09T5ZT9",
+          "SK": "MEMBER#01GR0RX93VADT7Y09EW09T5ZT9",
+          "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "GSI1SK": "MEMBER#01GR0RX93VADT7Y09EW09T5ZT9",
+          "GSI2PK": "EMAIL#sujarno.arno27@gmail.com",
+          "GSI2SK": "MEMBER#01GR0RX93VADT7Y09EW09T5ZT9",
+          "GSI3PK": "MEMBERTYPE#SALES",
+          "GSI3SK": "MEMBER#01GR0RX93VADT7Y09EW09T5ZT9",
+          "GSI4PK": "MEMBER#NAME#SUJARNO",
+          "GSI4SK": "MEMBER#NAME#SUJARNO",
+          "Id": "01GR0RX93VADT7Y09EW09T5ZT9",
+          "Name": "Sujarno",
+          "Nickname": "Sujarno",
+          "Email": "sujarno.arno27@gmail.com",
+          "Mobile": "087874444412",
+          "Roles": [
+              "parastar/sales"
+          ],
+          "Position": "parastar/sales",
+          "Active": true,
+          "AvailableCompany": [
+              {
+                  "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+                  "Name": "PT Parastar Distrindo"
+              }
+          ],
+          "AvailableWarehouse": [
+              {
+                  "Id": "01GMFQ5CMG5JPVF9AFM7QSPB8G",
+                  "Name": "BO JTM XL BONE"
+              }
+          ],
+          "AvailableWorkarea": [
+              {
+                  "Id": "01GMCN68GV8SVMBZ7W4JWGRR29",
+                  "Name": "GREATER MADIUN"
+              }
+          ],
+          "SpvName": "Baharuddin ",
+          "SpvMobile": "087850818999",
+          "SpvEmail": "baharuddin@para-star.com",
+          "BranchOffice": "BO SULAWESI XL BONE",
+          "BranchManagerName": "SAHARUDDIN ",
+          "BranchManagerEmail": "saharuddin@para-star.com",
+          "BranchManagerMobile": "081991700001",
+          "SettlementFinanceDuration": 1,
+          "SettlementLogisticDuration": 1,
+          "IsCanAttendance": true,
+          "IsCanJourneyVisit": true,
+          "IsCanSettlementFinance": true,
+          "IsCanSettlementLogistic": true,
+          "IsAlreadyAttendance": false,
+          "MinimumRevenue": 368130825,
+          "MinimumAttendance": 24,
+          "MinimumCheckIn": 9,
+          "MinimumVisit": 12,
+          "AssignmentLimit": 40000000,
+          "IsFinanceSettlementComplete": true,
+          "IsProductSettlementComplete": true,
+          "IsAssignmentComplete": true,
+          "MemberType": "SALES",
+          "CreatedTimestamp": "2023-01-30T14:22:50.875321175+07:00",
+          "UpdatedTimestamp": "2023-01-30T14:22:50.875321175+07:00"
+      },
+      {
+          "PK": "MEMBER#01GR0RX93V66J6HSKC8226SCHX",
+          "SK": "MEMBER#01GR0RX93V66J6HSKC8226SCHX",
+          "GSI1PK": "COMPANY#01G2MVQNXQCFK2BPS5JE7AHV8D",
+          "GSI1SK": "MEMBER#01GR0RX93V66J6HSKC8226SCHX",
+          "GSI2PK": "EMAIL#fachrunmaster23@gmail.com",
+          "GSI2SK": "MEMBER#01GR0RX93V66J6HSKC8226SCHX",
+          "GSI3PK": "MEMBERTYPE#SALES",
+          "GSI3SK": "MEMBER#01GR0RX93V66J6HSKC8226SCHX",
+          "GSI4PK": "MEMBER#NAME#VACHRUNADIYAKSA",
+          "GSI4SK": "MEMBER#NAME#VACHRUNADIYAKSA",
+          "Id": "01GR0RX93V66J6HSKC8226SCHX",
+          "Name": "Vachrun Adiyaksa",
+          "Nickname": "Vachrun Adiyaksa",
+          "Email": "fachrunmaster23@gmail.com",
+          "Mobile": "087815996333",
+          "Roles": [
+              "parastar/sales"
+          ],
+          "Position": "parastar/sales",
+          "Active": true,
+          "AvailableCompany": [
+              {
+                  "Id": "01G2MVQNXQCFK2BPS5JE7AHV8D",
+                  "Name": "PT Parastar Distrindo"
+              }
+          ],
+          "AvailableWarehouse": [
+              {
+                  "Id": "01GMFQ5CMG5JPVF9AFM7QSPB8G",
+                  "Name": "BO JTM XL BONE"
+              }
+          ],
+          "AvailableWorkarea": [
+              {
+                  "Id": "01GMCN68GV8SVMBZ7W4JWGRR29",
+                  "Name": "GREATER MADIUN"
+              }
+          ],
+          "SpvName": "Baharuddin ",
+          "SpvMobile": "087850818999",
+          "SpvEmail": "baharuddin@para-star.com",
+          "BranchOffice": "BO SULAWESI XL BONE",
+          "BranchManagerName": "SAHARUDDIN ",
+          "BranchManagerEmail": "saharuddin@para-star.com",
+          "BranchManagerMobile": "081991700001",
+          "SettlementFinanceDuration": 1,
+          "SettlementLogisticDuration": 1,
+          "IsCanAttendance": true,
+          "IsCanJourneyVisit": true,
+          "IsCanSettlementFinance": true,
+          "IsCanSettlementLogistic": true,
+          "IsAlreadyAttendance": false,
+          "MinimumRevenue": 507502160,
+          "MinimumAttendance": 24,
+          "MinimumCheckIn": 9,
+          "MinimumVisit": 12,
+          "AssignmentLimit": 40000000,
+          "IsFinanceSettlementComplete": true,
+          "IsProductSettlementComplete": true,
+          "IsAssignmentComplete": true,
+          "MemberType": "SALES",
+          "CreatedTimestamp": "2023-01-30T14:22:50.875448933+07:00",
+          "UpdatedTimestamp": "2023-01-30T14:22:50.875448933+07:00"
+      }
+  ]
+}
