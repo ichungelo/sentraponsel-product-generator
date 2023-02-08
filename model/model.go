@@ -390,6 +390,10 @@ type Store struct {
 	TaxDocumentValidDate     *string    `json:",omitempty" dynamodbav:",omitempty"`
 	Active                   *bool      `json:",omitempty" dynamodbav:",omitempty"`
 	ExclusivePayment         []string   `json:",omitempty" dynamodbav:",omitempty"`
+	OrderConsignment         *Order     `json:",omitempty" dynamodbav:",omitempty"`
+	OrderTop                 []Order    `json:",omitempty" dynamodbav:",omitempty"`
+	OrderPending             *Order     `json:",omitempty" dynamodbav:",omitempty"`
+	OrderPreorder            *Order     `json:",omitempty" dynamodbav:",omitempty"`
 	CreatedTimestamp         *time.Time `json:",omitempty" dynamodbav:",omitempty"`
 	UpdatedTimestamp         *time.Time `json:",omitempty" dynamodbav:",omitempty"`
 }
@@ -427,4 +431,165 @@ func BuildStoreGsi3Pk(noChip string) (pk string) {
 }
 func BuildStoreGsi3Sk(noChip string) (pk string) {
 	return fmt.Sprintf("%s#%s", StoreGsi3Sk, noChip)
+}
+
+type Order struct {
+	PK                  *string              `json:",omitempty" dynamodbav:",omitempty"`
+	SK                  *string              `json:",omitempty" dynamodbav:",omitempty"`
+	GSI1PK              *string              `json:",omitempty" dynamodbav:",omitempty"`
+	GSI1SK              *string              `json:",omitempty" dynamodbav:",omitempty"`
+	GSI2PK              *string              `json:",omitempty" dynamodbav:",omitempty"`
+	GSI2SK              *string              `json:",omitempty" dynamodbav:",omitempty"`
+	GSI3PK              *string              `json:",omitempty" dynamodbav:",omitempty"`
+	GSI3SK              *string              `json:",omitempty" dynamodbav:",omitempty"`
+	Id                  *string              `json:",omitempty" dynamodbav:",omitempty"`
+	Invoice             []OrderInvoice       `json:",omitempty" dynamodbav:",omitempty"`
+	Products            []OrderProduct       `json:",omitempty" dynamodbav:",omitempty"`
+	ProductDetails      []OrderProductDetail `json:",omitempty" dynamodbav:",omitempty"`
+	Payments            []OrderPayment       `json:",omitempty" dynamodbav:",omitempty"`
+	Remark              *string              `json:",omitempty" dynamodbav:",omitempty"`
+	NoInvoice           *string              `json:",omitempty" dynamodbav:",omitempty"`
+	DeliveryId          *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerId          *string              `json:",omitempty" dynamodbav:",omitempty"`
+	OwnerName           *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerName        *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerAddress     *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerEmail       *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerNpwp        *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerNoKtp       *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerNpwpAddress *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerMobile      *string              `json:",omitempty" dynamodbav:",omitempty"`
+	MemberId            *string              `json:",omitempty" dynamodbav:",omitempty"`
+	MemberName          *string              `json:",omitempty" dynamodbav:",omitempty"`
+	MemberEmail         *string              `json:",omitempty" dynamodbav:",omitempty"`
+	MemberMobile        *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CompanyId           *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CompanyName         *string              `json:",omitempty" dynamodbav:",omitempty"`
+	WarehouseId         *string              `json:",omitempty" dynamodbav:",omitempty"`
+	WarehouseName       *string              `json:",omitempty" dynamodbav:",omitempty"`
+	WorkareaId          *string              `json:",omitempty" dynamodbav:",omitempty"`
+	WorkareaName        *string              `json:",omitempty" dynamodbav:",omitempty"`
+	Address             *string              `json:",omitempty" dynamodbav:",omitempty"`
+	IncludePaymentCash  *string              `json:",omitempty" dynamodbav:",omitempty"`
+	TotalProduct        int64                `json:",omitempty" dynamodbav:",omitempty"`
+	TotalPrice          float64              `json:",omitempty" dynamodbav:",omitempty"`
+	DppPrice            float64              `json:",omitempty" dynamodbav:",omitempty"`
+	PpnPrice            float64              `json:",omitempty" dynamodbav:",omitempty"`
+	PphPrice            float64              `json:",omitempty" dynamodbav:",omitempty"`
+	Price               float64              `json:",omitempty" dynamodbav:",omitempty"`
+	Type                *string              `json:",omitempty" dynamodbav:",omitempty"`
+	AssignmentCode      *string              `json:",omitempty" dynamodbav:",omitempty"`
+	DeliveryStatus      *string              `json:",omitempty" dynamodbav:",omitempty"`
+	OrderStatus         *string              `json:",omitempty" dynamodbav:",omitempty"`
+	PaymentStatus       *string              `json:",omitempty" dynamodbav:",omitempty"`
+	IsSettle            *bool                `json:",omitempty" dynamodbav:",omitempty"`
+	DetailInvoice       []Invoice            `json:",omitempty" dynamodbav:",omitempty"`
+	PaymentTimestamp    *time.Time           `json:",omitempty" dynamodbav:",omitempty"`
+	CreatedTimestamp    *time.Time           `json:",omitempty" dynamodbav:",omitempty"`
+	ExpiredTimestamp    *time.Time           `json:",omitempty" dynamodbav:",omitempty"`
+	UpdatedTimestamp    *time.Time           `json:",omitempty" dynamodbav:",omitempty"`
+}
+
+type OrderInvoice struct {
+	Id                 *string    `json:",omitempty" dynamodbav:",omitempty"`
+	NoInvoice          *string    `json:",omitempty" dynamodbav:",omitempty"`
+	PaymentId          *string    `json:",omitempty" dynamodbav:",omitempty"`
+	PaymentName        *string    `json:",omitempty" dynamodbav:",omitempty"`
+	PaymentTimestamp   *time.Time `json:",omitempty" dynamodbav:",omitempty"`
+	TotalPayment       float64    `json:",omitempty" dynamodbav:",omitempty"`
+	TotalPaymentString string     `json:",omitempty" dynamodbav:",omitempty"`
+}
+
+type OrderProduct struct {
+	InventoryId *string  `json:",omitempty" dynamodbav:",omitempty"`
+	Name        *string  `json:",omitempty" dynamodbav:",omitempty"`
+	BrandName   *string  `json:",omitempty" dynamodbav:",omitempty"`
+	BrandId     *string  `json:",omitempty" dynamodbav:",omitempty"`
+	TypeName    *string  `json:",omitempty" dynamodbav:",omitempty"`
+	TypeId      *string  `json:",omitempty" dynamodbav:",omitempty"`
+	Quantity    int64    `json:",omitempty" dynamodbav:",omitempty"`
+	ImageUrl    *string  `json:",omitempty" dynamodbav:",omitempty"`
+	Description *string  `json:",omitempty" dynamodbav:",omitempty"`
+	Price       float64  `json:",omitempty" dynamodbav:",omitempty"`
+	PriceString *string  `json:",omitempty" dynamodbav:",omitempty"`
+	UsePph      bool     `json:",omitempty" dynamodbav:",omitempty"`
+	TaxLimit    *float64 `json:",omitempty" dynamodbav:",omitempty"`
+}
+
+type OrderProductDetail struct {
+	InventoryId   *string  `json:",omitempty" dynamodbav:",omitempty"`
+	InventoryName *string  `json:",omitempty" dynamodbav:",omitempty"`
+	ProductId     *string  `json:",omitempty" dynamodbav:",omitempty"`
+	ProductName   *string  `json:",omitempty" dynamodbav:",omitempty"`
+	BrandId       *string  `json:",omitempty" dynamodbav:",omitempty"`
+	BrandName     *string  `json:",omitempty" dynamodbav:",omitempty"`
+	TypeId        *string  `json:",omitempty" dynamodbav:",omitempty"`
+	TypeName      *string  `json:",omitempty" dynamodbav:",omitempty"`
+	Name          *string  `json:",omitempty" dynamodbav:",omitempty"`
+	Imei          *string  `json:",omitempty" dynamodbav:",omitempty"`
+	Status        *string  `json:",omitempty" dynamodbav:",omitempty"`
+	Price         *float64 `json:",omitempty" dynamodbav:",omitempty"`
+	Balance       float64  `json:",omitempty" dynamodbav:",omitempty"`
+} // tambah price, paymentDate, TypeName, Typeid, BrandName,
+
+type OrderPayment struct {
+	PaymentId     *string `json:",omitempty" dynamodbav:",omitempty"`
+	PaymentName   *string `json:",omitempty" dynamodbav:",omitempty"`
+	TotalPayment  float64 `json:",omitempty" dynamodbav:",omitempty"`
+	PaymentStatus *string `json:",omitempty" dynamodbav:",omitempty"`
+	Remark        *string `json:",omitempty" uynamodbav:",omitempty"`
+}
+
+type Invoice struct {
+	PK                  *string              `json:",omitempty" dynamodbav:",omitempty"`
+	SK                  *string              `json:",omitempty" dynamodbav:",omitempty"`
+	GSI1PK              *string              `json:",omitempty" dynamodbav:",omitempty"`
+	GSI1SK              *string              `json:",omitempty" dynamodbav:",omitempty"`
+	GSI2PK              *string              `json:",omitempty" dynamodbav:",omitempty"`
+	GSI2SK              *string              `json:",omitempty" dynamodbav:",omitempty"`
+	GSI3PK              *string              `json:",omitempty" dynamodbav:",omitempty"`
+	GSI3SK              *string              `json:",omitempty" dynamodbav:",omitempty"`
+	Id                  *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerId          *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerName        *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerAddress     *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerNpwp        *string              `json:",omitempty" dynamodbav:",omitempty"` /**/
+	CustomerNpwpAddress *string              `json:",omitempty" dynamodbav:",omitempty"` /**/
+	CustomerNoKtp       *string              `json:",omitempty" dynamodbav:",omitempty"` /**/
+	CustomerEmail       *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerMobile      *string              `json:",omitempty" dynamodbav:",omitempty"`
+	MemberId            *string              `json:",omitempty" dynamodbav:",omitempty"`
+	MemberName          *string              `json:",omitempty" dynamodbav:",omitempty"`
+	MemberEmail         *string              `json:",omitempty" dynamodbav:",omitempty"`
+	MemberMobile        *string              `json:",omitempty" dynamodbav:",omitempty"`
+	OrderId             *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CompanyId           *string              `json:",omitempty" dynamodbav:",omitempty"`
+	CompanyName         *string              `json:",omitempty" dynamodbav:",omitempty"`
+	NoInvoice           *string              `json:",omitempty" dynamodbav:",omitempty"`
+	SettlementStatus    *string              `json:",omitempty" dynamodbav:",omitempty"`
+	TotalPayment        float64              `json:",omitempty" dynamodbav:",omitempty"`
+	TotalPriceReceived  float64              `json:",omitempty" dynamodbav:",omitempty"`
+	TotalProduct        int64                `json:",omitempty" dynamodbav:",omitempty"`
+	TotalPrice          float64              `json:",omitempty" dynamodbav:",omitempty"`
+	DppPrice            float64              `json:",omitempty" dynamodbav:",omitempty"`
+	PpnPrice            float64              `json:",omitempty" dynamodbav:",omitempty"`
+	PphPrice            float64              `json:",omitempty" dynamodbav:",omitempty"`
+	Price               float64              `json:",omitempty" dynamodbav:",omitempty"`
+	Payments            []OrderPayment       `json:",omitempty" dynamodbav:",omitempty"`
+	Products            []OrderProduct       `json:",omitempty" dynamodbav:",omitempty"`
+	ProductDetails      []OrderProductDetail `json:",omitempty" dynamodbav:",omitempty"`
+	PaymentStatus       *string              `json:",omitempty" dynamodbav:",omitempty"`
+	PaymentId           *string              `json:",omitempty" dynamodbav:",omitempty"`
+	PaymentName         *string              `json:",omitempty" dynamodbav:",omitempty"`
+	WarehouseId         *string              `json:",omitempty" dynamodbav:",omitempty"`
+	WarehouseName       *string              `json:",omitempty" dynamodbav:",omitempty"`
+	WorkareaId          *string              `json:",omitempty" dynamodbav:",omitempty"`
+	WorkareaName        *string              `json:",omitempty" dynamodbav:",omitempty"`
+	PaymentTimestamp    *time.Time           `json:",omitempty" dynamodbav:",omitempty"`
+	IsSettle            *bool                `json:",omitempty" dynamodbav:",omitempty"`
+	Remark              *string              `json:",omitempty" dynamodbav:",omitempty"`
+	SettlementRemark    *string              `json:",omitempty" dynamodbav:",omitempty"`
+	ExpiredTimestamp    *time.Time           `json:",omitempty" dynamodbav:",omitempty"`
+	CreatedTimestamp    *time.Time           `json:",omitempty" dynamodbav:",omitempty"`
+	UpdatedTimestamp    *time.Time           `json:",omitempty" dynamodbav:",omitempty"`
 }

@@ -1,10 +1,14 @@
 package service
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"log"
 	"math"
 	"sentraponsel-product-generator/internal/presenter"
 	"sentraponsel-product-generator/model"
+	"sentraponsel-product-generator/repository"
 	"sentraponsel-product-generator/util"
 	"strconv"
 	"strings"
@@ -156,8 +160,20 @@ func CreateSales(salesData presenter.SalesData, companyId, companyName, warehous
 		id            = util.GetUlid()
 		name          = util.ProsesNameToStandard(salesData.Name)
 		targetRevenue = math.Ceil(salesData.TargetRevenue)
+		data          = model.Member{}
 	)
-	return model.Member{
+
+	result, err := repository.GetItem(salesData.SalesEmail, "prod", "member")
+	if err != nil {
+		log.Panicln(err.Error())
+	}
+
+	if result != nil {
+		log.Printf("Data %s with email %s already exist", salesData.Name, salesData.SalesEmail)
+		fmt.Println(result)
+	}
+
+	data = model.Member{
 		Active:                      aws.Bool(true),
 		AssignmentLimit:             salesData.LimitSales,
 		BranchManagerName:           &salesData.BMName,
@@ -190,8 +206,8 @@ func CreateSales(salesData presenter.SalesData, companyId, companyName, warehous
 		MinimumRevenue:              aws.Float64(targetRevenue),
 		MinimumVisit:                &salesData.MinimumVisit,
 		Mobile:                      &salesData.PhoneNumber,
-		Name:                        &salesData.Name,
-		Nickname:                    &salesData.Name,
+		Name:                        aws.String(strings.ToUpper(salesData.Name)),
+		Nickname:                    aws.String(strings.ToUpper(salesData.Name)),
 		PK:                          aws.String(model.BuildMemberPk(id)),
 		SK:                          aws.String(model.BuildMemberSk(id)),
 		SettlementFinanceDuration:   aws.Int64(int64(salesData.SettlementDuration)),
@@ -220,6 +236,95 @@ func CreateSales(salesData presenter.SalesData, companyId, companyName, warehous
 			},
 		},
 	}
+
+	return data
+}
+
+func GenerateUser(request presenter.RequestUser) presenter.ResponseUser {
+	res := presenter.ResponseUser{}
+
+	for _, v := range request.UserData {
+		user := CreateUser(v)
+
+		isExist := false
+		for index, v2 := range res.User {
+			if *user.Email == *v2.Email {
+				v2.AvailableWarehouse = append(v2.AvailableWarehouse, user.AvailableWarehouse[0])
+				res.User[index].AvailableWarehouse = v2.AvailableWarehouse
+				isExist = true
+				break
+			}
+		}
+
+		if isExist {
+			continue
+		} else {
+			res.User = append(res.User, user)
+		}
+
+	}
+
+	return res
+}
+
+func CreateUser(userData presenter.UserData) model.Member {
+	var (
+		timeNow = time.Now()
+		id      = util.GetUlid()
+		name    = util.ProsesNameToStandard(userData.Name)
+	)
+
+	result, err := repository.GetItem(userData.EmailAddress, "prod", "member")
+	if err != nil {
+		log.Panicln(err.Error())
+	}
+
+	if result != nil {
+		log.Printf("Data %s with email %s already exist", userData.Name, userData.EmailAddress)
+		fmt.Println(result)
+	}
+
+	return model.Member{
+		Active:     aws.Bool(true),
+		PK:         aws.String(model.BuildMemberPk(id)),
+		SK:         aws.String(model.BuildMemberSk(id)),
+		GSI1PK:     aws.String(model.BuildMemberGsi1Pk(userData.CompanyId)),
+		GSI1SK:     aws.String(model.BuildMemberGsi1Sk(id)),
+		GSI2PK:     aws.String(model.BuildMemberGsi2Pk(userData.EmailAddress)),
+		GSI2SK:     aws.String(model.BuildMemberGsi2Sk(id)),
+		GSI3PK:     aws.String(model.BuildMemberGsi3Pk("USER")),
+		GSI3SK:     aws.String(model.BuildMemberGsi3Sk(id)),
+		GSI4PK:     aws.String(model.BuildMemberGsi4Pk(name)),
+		GSI4SK:     aws.String(model.BuildMemberGsi4Sk(name)),
+		Id:         &id,
+		Name:       &userData.Name,
+		Nickname:   &userData.Name,
+		Email:      &userData.EmailAddress,
+		Mobile:     &userData.PhoneNumber,
+		Roles:      userData.UserGroup,
+		MemberType: aws.String("USER"),
+		AvailableCompany: []model.MemberAvailableCompany{
+			{
+				Id:   &userData.CompanyId,
+				Name: &userData.CompanyName,
+			},
+		},
+		AvailableWorkarea: []model.MemberAvailableWorkarea{
+			{
+				Id:   &userData.WorkareaId,
+				Name: &userData.WorkareaName,
+			},
+		},
+		AvailableWarehouse: []model.MemberAvailableWarehouse{
+			{
+				Id:   &userData.WarehouseId,
+				Name: &userData.WarehouseName,
+			},
+		},
+		CreatedTimestamp: aws.Time(timeNow),
+		UpdatedTimestamp: aws.Time(timeNow),
+	}
+
 }
 
 func GenerateDataStore(request presenter.RequestStore) presenter.ResponseStore {
@@ -277,15 +382,15 @@ func CreateStore(storeData presenter.StoreData, companyId string, companyName st
 		Longitude:           aws.Float64(float64(lon)),
 		Limit:               aws.Float64(10000000),
 		Mobile:              &storeData.StorePhoneNumber,
-		Name:                &storeData.StoreName,
+		Name:                aws.String(strings.ToUpper(storeData.StoreName)),
 		NoChip:              &storeData.NoChip,
 		NoKtp:               &storeData.OwnerKTP,
 		Npwp:                aws.String(""),
 		NpwpAddress:         aws.String(""),
 		OwnerEmail:          &storeData.OwnerEmail,
 		OwnerMobile:         &storeData.OwnerPhoneNumber,
-		OwnerName:           &storeData.OwnerName,
-		PicName:             &storeData.PICName,
+		OwnerName:           aws.String(strings.ToUpper(storeData.OwnerName)),
+		PicName:             aws.String(strings.ToUpper(storeData.PICName)),
 		PicMobile:           &storeData.PICPhoneNumber,
 		PictKtp:             aws.String(""),
 		PictNpwp:            aws.String(""),
@@ -301,63 +406,79 @@ func CreateStore(storeData presenter.StoreData, companyId string, companyName st
 	}
 }
 
-func GenerateUser(request presenter.RequestUser) presenter.ResponseUser {
-	res := presenter.ResponseUser{}
+func UpdateDataStore(req presenter.RequestStore) presenter.ResponseStore {
+	res := presenter.ResponseStore{}
 
-	for _, v := range request.UserData {
-		user := CreateUser(v)
+	for _, v := range req.StoreData {
+		store := UpdateStore(v, req.CompanyId, req.CompanyName, req.WarehouseId, req.WarehouseName, req.WorkAreaId, req.WorkAreaName)
 
-		res.User = append(res.User, user)
+		res.Store = append(res.Store, store)
 	}
 
 	return res
 }
 
-func CreateUser(userData presenter.UserData) model.Member {
+func UpdateStore(storeData presenter.StoreData, companyId string, companyName string, warehouseId string, warehouseName string, workAreaId string, workAreaName string) model.Store {
 	var (
-		timeNow = time.Now()
-		id      = util.GetUlid()
-		name    = util.ProsesNameToStandard(userData.Name)
+		res    = map[string]interface{}{}
+		store  = model.Store{}
 	)
-	return model.Member{
-		Active:     aws.Bool(true),
-		PK:         aws.String(model.BuildMemberPk(id)),
-		SK:         aws.String(model.BuildMemberSk(id)),
-		GSI1PK:     aws.String(model.BuildMemberGsi1Pk(userData.CompanyId)),
-		GSI1SK:     aws.String(model.BuildMemberGsi1Sk(id)),
-		GSI2PK:     aws.String(model.BuildMemberGsi2Pk(userData.EmailAddress)),
-		GSI2SK:     aws.String(model.BuildMemberGsi2Sk(id)),
-		GSI3PK:     aws.String(model.BuildMemberGsi3Pk("USER")),
-		GSI3SK:     aws.String(model.BuildMemberGsi3Sk(id)),
-		GSI4PK:     aws.String(model.BuildMemberGsi4Pk(name)),
-		GSI4SK:     aws.String(model.BuildMemberGsi4Sk(name)),
-		Id:         &id,
-		Name:       &userData.Name,
-		Nickname:   &userData.Name,
-		Email:      &userData.EmailAddress,
-		Mobile:     &userData.PhoneNumber,
-		Roles:      userData.UserGroup,
-		MemberType: aws.String("USER"),
-		AvailableCompany: []model.MemberAvailableCompany{
-			{
-				Id:   &userData.CompanyId,
-				Name: &userData.CompanyName,
-			},
-		},
-		AvailableWorkarea: []model.MemberAvailableWorkarea{
-			{
-				Id:   &userData.WorkareaId,
-				Name: &userData.WorkareaName,
-			},
-		},
-		AvailableWarehouse: []model.MemberAvailableWarehouse{
-			{
-				Id:   &userData.WarehouseId,
-				Name: &userData.WarehouseName,
-			},
-		},
-		CreatedTimestamp: aws.Time(timeNow),
-		UpdatedTimestamp: aws.Time(timeNow),
+
+	response, err := repository.GetExistItem(storeData.OwnerPhoneNumber, storeData.OwnerKTP, storeData.NoChip, "prod", "store")
+	if err != nil {
+		log.Panicln(err.Error())
 	}
 
+	if response == nil {
+		log.Panicf("Store data %s with email %s not exist", storeData.StoreName, storeData.StoreEmail)
+	}
+
+	responseBody, err := ioutil.ReadAll(response.Body)
+	if nil != err {
+		log.Panicf("Failed read opensearch response")
+	}
+
+	err = json.Unmarshal(responseBody, &res)
+	if nil != err {
+		log.Panicf("Failed unmarshal opensearch response")
+	}
+
+	if res["hits"] != nil {
+		storeList := []model.Store{}
+		response := res["hits"].(map[string]interface{})
+
+		for _, v := range response["hits"].([]interface{}) {
+			var store model.Store
+
+			data := make(map[string]interface{})
+
+			err = util.MapToStruct(v, &data)
+			if err != nil {
+				log.Panicf(err.Error())
+			}
+
+			err = util.MapToStruct(data["_source"], &store)
+			if err != nil {
+				log.Panicf(err.Error())
+			}
+
+			storeList = append(storeList, store)
+		}
+
+		if len(storeList) == 1 {
+			store = storeList[0]
+		} else if len(storeList) > 1 {
+			log.Panicf("store got multiple store with id %s", *storeList[0].PK)
+		} else {
+			log.Panicf("store not found")
+		}
+	}
+
+	store.OwnerMobile = &storeData.OwnerPhoneNumber
+	store.OwnerName = aws.String(strings.ToUpper(storeData.OwnerName))
+	store.PicName = aws.String(strings.ToUpper(storeData.PICName))
+	store.PicMobile = &storeData.PICPhoneNumber
+	store.Name = aws.String(strings.ToUpper(storeData.StoreName))
+
+	return store
 }

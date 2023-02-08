@@ -69,6 +69,27 @@ func GenerateStore() fiber.Handler {
 	}
 }
 
+func UpdateStore() fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		var (
+			body = presenter.RequestStore{}
+			err = c.BodyParser(&body)
+		)
+
+		if err != nil {
+			return c.Status(http.StatusBadRequest).JSON(&fiber.Map{
+				"Code": http.StatusBadRequest,
+				"Error": err.Error(),
+				"Success": false,
+			})
+		}
+
+		response := service.UpdateDataStore(body)
+
+		return c.JSON(response)
+	}
+}
+
 func GenerateUser() fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		var (

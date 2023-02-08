@@ -1,6 +1,7 @@
 package util
 
 import (
+	"encoding/json"
 	"math"
 	"math/rand"
 	"regexp"
@@ -48,6 +49,17 @@ func ProsesNameToStandard(name string) (n string) {
 	n = re.ReplaceAllString(name, "")
 
 	n = strings.ToUpper(strings.ReplaceAll(strings.ReplaceAll(n, " ", ""), "_", ""))
+
+	return
+}
+
+func MapToStruct(m interface{}, s interface{}) (err error) {
+	bytes, err := json.Marshal(m)
+	if nil != err {
+		return err
+	}
+
+	err = json.Unmarshal(bytes, s)
 
 	return
 }
