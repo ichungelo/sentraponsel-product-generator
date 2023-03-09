@@ -274,15 +274,15 @@ func CreateUser(userData presenter.UserData) model.Member {
 		name    = util.ProsesNameToStandard(userData.Name)
 	)
 
-	result, err := repository.GetItem(userData.EmailAddress, "prod", "member")
-	if err != nil {
-		log.Panicln(err.Error())
-	}
+	// result, err := repository.GetItem(userData.EmailAddress, "prod", "member")
+	// if err != nil {
+	// 	log.Panicln(err.Error())
+	// }
 
-	if result != nil {
-		log.Printf("Data %s with email %s already exist", userData.Name, userData.EmailAddress)
-		fmt.Println(result)
-	}
+	// if result != nil {
+	// 	log.Printf("Data %s with email %s already exist", userData.Name, userData.EmailAddress)
+	// 	fmt.Println(result)
+	// }
 
 	return model.Member{
 		Active:     aws.Bool(true),
@@ -481,4 +481,37 @@ func UpdateStore(storeData presenter.StoreData, companyId string, companyName st
 	store.Name = aws.String(strings.ToUpper(storeData.StoreName))
 
 	return store
+}
+
+func UpdateDataActivity(req presenter.RequestUpdateActivity) presenter.ResponseActivity {
+	res := presenter.ResponseActivity{}
+
+	activityList := UpdateActivity(req)
+	res.Activity = activityList
+
+	return res
+}
+
+func UpdateActivity(req presenter.RequestUpdateActivity) []model.Activity {
+	var(
+		hasNext = true
+		list = []model.Activity{}
+	)
+
+		res, itemLeft, err := repository.GetBatchItemActivity(100, "prod", "financesettlement", &hasNext)
+		if err != nil {
+			log.Panicf("panic error repository activity")
+		}
+		for _, v := range res {
+			v.CompanyId = &req.CompanyId
+			v.CompanyName = &req.CompanyName
+
+			list = append(list, v)
+		}
+
+		if itemLeft < 100 {
+			hasNext = false
+		}
+
+	return list
 }

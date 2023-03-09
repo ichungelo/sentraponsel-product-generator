@@ -114,3 +114,8 @@ type UserData struct {
 	CompanyId     string
 	CompanyName   string
 }
+
+type RequestUpdateActivity struct {
+	CompanyId   string
+	CompanyName string
+}

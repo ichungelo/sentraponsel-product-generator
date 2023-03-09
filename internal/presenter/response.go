@@ -19,3 +19,7 @@ type ResponseStore struct {
 type ResponseUser struct {
 	User []model.Member
 }
+
+type ResponseActivity struct {
+	Activity []model.Activity
+}

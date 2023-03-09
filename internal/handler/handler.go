@@ -110,3 +110,25 @@ func GenerateUser() fiber.Handler {
 		return c.JSON(response)
 	}
 }
+
+func GenerateActivity() fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		var (
+			body = presenter.RequestUpdateActivity{}
+			err = c.BodyParser(&body)
+		)
+
+		if err != nil {
+			return c.Status(http.StatusBadRequest).JSON(&fiber.Map{
+				"Code": http.StatusBadRequest,
+				"Error": err.Error(),
+				"Success": false,
+			})
+		}
+
+		response := service.UpdateActivity(body)
+
+		return c.JSON(response)
+	}
+}
+

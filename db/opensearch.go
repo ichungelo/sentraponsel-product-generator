@@ -14,7 +14,6 @@ var OpensearchClient *opensearch.Client
 
 func ConnOpensearch() {
 	var(
-
 		address = os.Getenv("OPENSEARCH_ADDRESS")
 		username = os.Getenv("OPENSEARCH_USERNAME")
 		password = os.Getenv("OPENSEARCH_PASSWORD")

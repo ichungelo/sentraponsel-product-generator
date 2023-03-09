@@ -173,9 +173,9 @@ func GetProductGSI3SK(skuId string) string {
 	return fmt.Sprintf("SHOP#PRODUCT#SKU#%s", skuId)
 }
 
-//! PARASTAR
-
+// ! PARASTAR
 type Member struct {
+	Company                     *string                    `json:",omitempty" dynamodbav:",omitempty"`
 	PK                          *string                    `json:",omitempty" dynamodbav:",omitempty"`
 	SK                          *string                    `json:",omitempty" dynamodbav:",omitempty"`
 	GSI1PK                      *string                    `json:",omitempty" dynamodbav:",omitempty"`
@@ -592,4 +592,287 @@ type Invoice struct {
 	ExpiredTimestamp    *time.Time           `json:",omitempty" dynamodbav:",omitempty"`
 	CreatedTimestamp    *time.Time           `json:",omitempty" dynamodbav:",omitempty"`
 	UpdatedTimestamp    *time.Time           `json:",omitempty" dynamodbav:",omitempty"`
+}
+
+type ProductParastar struct {
+	PK               *string    `json:",omitempty" dynamodbav:",omitempty"`
+	SK               *string    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI1PK           *string    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI1SK           *string    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI2PK           *string    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI2SK           *string    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI3PK           *string    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI3SK           *string    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI4PK           *string    `json:",omitempty" dynamodbav:",omitempty"`
+	GSI4SK           *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Id               *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Name             *string    `json:",omitempty" dynamodbav:",omitempty"`
+	InventoryId      *string    `json:",omitempty" dynamodbav:",omitempty"`
+	InventoryName    *string    `json:",omitempty" dynamodbav:",omitempty"`
+	CompanyId        *string    `json:",omitempty" dynamodbav:",omitempty"`
+	CompanyName      *string    `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerId       *string    `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerName     *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Imei             *string    `json:",omitempty" dynamodbav:",omitempty"`
+	MemberId         *string    `json:",omitempty" dynamodbav:",omitempty"`
+	MemberName       *string    `json:",omitempty" dynamodbav:",omitempty"`
+	WarehouseId      *string    `json:",omitempty" dynamodbav:",omitempty"`
+	WarehouseName    *string    `json:",omitempty" dynamodbav:",omitempty"`
+	TypeId           *string    `json:",omitempty" dynamodbav:",omitempty"`
+	ReferenceCode    *string    `json:",omitempty" dynamodbav:",omitempty"`
+	SkuName          *string    `json:",omitempty" dynamodbav:",omitempty"`
+	SkuId            *string    `json:",omitempty" dynamodbav:",omitempty"`
+	SettlementId     *string    `json:",omitempty" dynamodbav:",omitempty"`
+	BrandId          *string    `json:",omitempty" dynamodbav:",omitempty"`
+	OrderId          *string    `json:",omitempty" dynamodbav:",omitempty"`
+	TypeName         *string    `json:",omitempty" dynamodbav:",omitempty"`
+	BrandName        *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Price1           float64    `json:",omitempty" dynamodbav:",omitempty"`
+	Price2           float64    `json:",omitempty" dynamodbav:",omitempty"`
+	Price3           float64    `json:",omitempty" dynamodbav:",omitempty"`
+	Price4           float64    `json:",omitempty" dynamodbav:",omitempty"`
+	Balance          float64    `json:",omitempty" dynamodbav:",omitempty"`
+	Type             string     `json:",omitempty" dynamodbav:",omitempty"`
+	Price            float64    `json:",omitempty" dynamodbav:",omitempty"`
+	ProductStatus    string     `json:",omitempty" dynamodbav:",omitempty"`
+	InvoiceList      []string   `json:",omitempty" dynamodbav:",omitempty"`
+	LowestPrice      float64    `json:",omitempty" dynamodbav:",omitempty"`
+	Description      *string    `json:",omitempty" dynamodbav:",omitempty"`
+	AssignmentCode   *string    `json:",omitempty" dynamodbav:",omitempty"`
+	AssignmentType   *string    `json:",omitempty" dynamodbav:",omitempty"`
+	IsBooked         *bool      `json:",omitempty" dynamodbav:",omitempty"`
+	CreatedTimestamp *time.Time `json:",omitempty" dynamodbav:",omitempty"`
+	UpdatedTimestamp *time.Time `json:",omitempty" dynamodbav:",omitempty"`
+}
+
+const (
+	ProductPk     = "PRODUCT"
+	ProductSk     = "PRODUCT"
+	ProductGsi1Pk = "PRODUCT#INVENTORY"
+	ProductGsi1Sk = "PRODUCT#BRAND"
+	ProductGsi2Pk = "PRODUCT#COMPANY"
+	ProductGsi2Sk = "PRODUCT#WAREHOUSE"
+	ProductGsi3Pk = "PRODUCT#MEMBER"
+	ProductGsi3Sk = "PRODUCT#ASSIGNMENTCODE"
+	ProductGsi4Pk = "PRODUCT#CUSTOMER"
+	ProductGsi4Sk = "PRODUCT#ORDER"
+
+	StatusProductOnAssignment = "ONASSIGNMENT"
+	StatusProductOnOrder      = "ONORDER"
+	StatusProductOnSettlement = "ONSETTLEMENT"
+)
+
+func BuildProductPk(id string) (pk string) {
+	return fmt.Sprintf("%s#%s", ProductPk, id)
+}
+func BuildProductSk(id string) (pk string) {
+	return fmt.Sprintf("%s#%s", ProductSk, id)
+}
+func BuildProductGsi1Pk(inventoryId string) (pk string) {
+	return fmt.Sprintf("%s#%s", ProductGsi1Pk, inventoryId)
+}
+func BuildProductGsi1Sk(brandId string, typeId string) (pk string) {
+	return fmt.Sprintf("%s#%s#TYPE#%s", ProductGsi1Sk, brandId, typeId)
+}
+func BuildProductGsi1SkSearch() (pk string) {
+	return fmt.Sprintf("%s#", ProductGsi1Sk)
+}
+func BuildProductGsi2Pk(companyId string) (pk string) {
+	return fmt.Sprintf("%s#%s", ProductGsi2Pk, companyId)
+}
+func BuildProductGsi2Sk(warehouseId string, imei string) (pk string) {
+	return fmt.Sprintf("%s#%s#IMEI#%s", ProductGsi2Sk, warehouseId, imei)
+}
+func BuildProductGsi3Pk(salesId string, inventoryId string, typeName string, status string) (pk string) {
+	return fmt.Sprintf("%s#%s#INVENTORY#%s#TYPE#%s#STATUS#%s", ProductGsi3Pk, salesId, inventoryId, typeName, status)
+}
+func BuildProductGsi3Sk(assignmentCode string) (pk string) {
+	return fmt.Sprintf("%s#%s", ProductGsi3Sk, assignmentCode)
+}
+func BuildProductGsi4Pk(customerId string) (pk string) {
+	return fmt.Sprintf("%s#%s", ProductGsi4Pk, customerId)
+}
+func BuildProductGsi4Sk(OrderId string) (pk string) {
+	return fmt.Sprintf("%s#%s", ProductGsi4Sk, OrderId)
+}
+
+type Activity struct {
+	PK               *string    `json:",omitempty" dynamodbav:",omitempty"`
+	SK               *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Id               *string    `json:",omitempty" dynamodbav:",omitempty"`
+	MemberName       *string    `json:",omitempty" dynamodbav:",omitempty"`
+	MemberId         *string    `json:",omitempty" dynamodbav:",omitempty"`
+	CompanyName      *string    `json:",omitempty" dynamodbav:",omitempty"`
+	CompanyId        *string    `json:",omitempty" dynamodbav:",omitempty"`
+	Description      *string    `json:",omitempty" dynamodbav:",omitempty"`
+	CreatedTimestamp *time.Time `json:",omitempty" dynamodbav:",omitempty"`
+	UpdatedTimestamp *time.Time `json:",omitempty" dynamodbav:",omitempty"`
+}
+
+const (
+	ActivityPk = "ACTIVITY"
+	ActivitySk = "ACTIVITY"
+)
+
+func BuildActivityPk(id string) (pk string) {
+	return fmt.Sprintf("%s#%s", ActivityPk, id)
+}
+func BuildActivitySk(id string) (pk string) {
+	return fmt.Sprintf("%s#%s", ActivitySk, id)
+}
+
+type FinanceSettlement struct {
+	PK                 *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	SK                 *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	GSI1PK             *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	GSI1SK             *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	GSI2PK             *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	GSI2SK             *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	CompanyName        *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	CompanyId          *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	Id                 *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	Invoices           []FinanceSettlementDetail `json:",omitempty" dynamodbav:",omitempty"`
+	TotalPrice         float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	TotalPriceReceived float64                   `json:",omitempty" dynamodbav:",omitempty"`
+	Remark             *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	IsAccepted         *bool                     `json:",omitempty" dynamodbav:",omitempty"`
+	IsSettle           *bool                     `json:",omitempty" dynamodbav:",omitempty"`
+	UpdatedById        *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	UpdatedByName      *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	AssignmentCode     *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	MemberId           *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	MemberName         *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	WarehouseId        *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	WarehouseName      *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	Position           *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	ExpiredTimestamp   *time.Time                `json:",omitempty" dynamodbav:",omitempty"`
+	AcceptedTimestamp  *time.Time                `json:",omitempty" dynamodbav:",omitempty"`
+	CreatedTimestamp   *time.Time                `json:",omitempty" dynamodbav:",omitempty"`
+	UpdatedTimestamp   *time.Time                `json:",omitempty" dynamodbav:",omitempty"`
+}
+
+type FinanceSettlementDetail struct {
+	Id                 *string    `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerId         *string    `json:",omitempty" dynamodbav:",omitempty"`
+	CustomerName       *string    `json:",omitempty" dynamodbav:",omitempty"`
+	MemberId           *string    `json:",omitempty" dynamodbav:",omitempty"`
+	MemberName         *string    `json:",omitempty" dynamodbav:",omitempty"`
+	MemberEmail        *string    `json:",omitempty" dynamodbav:",omitempty"`
+	MemberMobile       *string    `json:",omitempty" dynamodbav:",omitempty"`
+	OrderId            *string    `json:",omitempty" dynamodbav:",omitempty"`
+	NoInvoice          *string    `json:",omitempty" dynamodbav:",omitempty"`
+	SettlementStatus   *string    `json:",omitempty" dynamodbav:",omitempty"`
+	TotalPayment       float64    `json:",omitempty" dynamodbav:",omitempty"`
+	TotalPriceReceived float64    `json:",omitempty" dynamodbav:",omitempty"`
+	PaymentTimestamp   *time.Time `json:",omitempty" dynamodbav:",omitempty"`
+	SettlementRemark   *string    `json:",omitempty" dynamodbav:",omitempty"`
+}
+
+const (
+	FinanceSettlementPk     = "FINANCESETTLEMENT"
+	FinanceSettlementSk     = "FINANCESETTLEMENT"
+	FinanceSettlementGsi1Pk = "FINANCESETTLEMENT#MEMBER"
+	FinanceSettlementGsi1Sk = "FINANCESETTLEMENT#CREATEDTIMESTAMP"
+	FinanceSettlementGsi2Pk = "FINANCESETTLEMENT#ASSIGNMENTCODE"
+	FinanceSettlementGsi2Sk = "FINANCESETTLEMENT#CREATEDTIMESTAMP"
+)
+
+func BuildFinanceSettlementPk(id string) (pk string) {
+	return fmt.Sprintf("%s#%s", FinanceSettlementPk, id)
+}
+func BuildFinanceSettlementSk(id string) (pk string) {
+	return fmt.Sprintf("%s#%s", FinanceSettlementSk, id)
+}
+func BuildFinanceSettlementGsi1Pk(salesId string) (pk string) {
+	return fmt.Sprintf("%s#%s", FinanceSettlementGsi1Pk, salesId)
+}
+func BuildFinanceSettlementGsi1Sk(date string) (pk string) {
+	return fmt.Sprintf("%s#%s", FinanceSettlementGsi1Sk, date)
+}
+func BuildFinanceSettlementGsi2Pk(assignmentCode string) (pk string) {
+	return fmt.Sprintf("%s#%s", FinanceSettlementGsi2Pk, assignmentCode)
+}
+func BuildFinanceSettlementGsi2Sk(date string) (pk string) {
+	return fmt.Sprintf("%s#%s", FinanceSettlementGsi2Sk, date)
+}
+
+type ProductSettlement struct {
+	PK                   *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	SK                   *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	GSI1PK               *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	GSI1SK               *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	GSI2PK               *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	GSI2SK               *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	CompanyName          *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	CompanyId            *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	Id                   *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	Products             []InventorySettlement     `json:",omitempty" dynamodbav:",omitempty"`
+	ProductDetails       []ProductSettlementDetail `json:",omitempty" dynamodbav:",omitempty"`
+	TotalProduct         int64                     `json:",omitempty" dynamodbav:",omitempty"`
+	ProductReceived      []ProductSettlementDetail `json:",omitempty" dynamodbav:",omitempty"`
+	TotalProductReceived int64                     `json:",omitempty" dynamodbav:",omitempty"`
+	Remark               *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	SettlementStatus     *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	AssignmentCode       *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	IsAccepted           *bool                     `json:",omitempty" dynamodbav:",omitempty"`
+	UpdatedById          *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	UpdatedByName        *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	MemberId             *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	MemberName           *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	WarehouseId          *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	WarehouseName        *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	Position             *string                   `json:",omitempty" dynamodbav:",omitempty"`
+	ExpiredTimestamp     *time.Time                `json:",omitempty" dynamodbav:",omitempty"`
+	AcceptedTimestamp    *time.Time                `json:",omitempty" dynamodbav:",omitempty"`
+	CreatedTimestamp     *time.Time                `json:",omitempty" dynamodbav:",omitempty"`
+	UpdatedTimestamp     *time.Time                `json:",omitempty" dynamodbav:",omitempty"`
+}
+
+type InventorySettlement struct {
+	Id       *string `json:"id"`
+	Name     *string `json:"name"`
+	Stock    int64   `json:"stock"`
+	ImageUrl *string `json:"imageUrl"`
+	Type     *string `json:"type"`
+}
+type ProductSettlementDetail struct {
+	Id            *string `json:",omitempty" dynamodbav:",omitempty"`
+	Name          *string `json:",omitempty" dynamodbav:",omitempty"`
+	InventoryId   *string `json:",omitempty" dynamodbav:",omitempty"`
+	InventoryName *string `json:",omitempty" dynamodbav:",omitempty"`
+	Imei          *string `json:",omitempty" dynamodbav:",omitempty"`
+	Balance       float64 `json:",omitempty" dynamodbav:",omitempty"`
+	Description   *string `json:",omitempty" dynamodbav:",omitempty"`
+}
+
+const (
+	ProductSettlementPk     = "PRODUCTSETTLEMENT"
+	ProductSettlementSk     = "PRODUCTSETTLEMENT"
+	ProductSettlementGsi1Pk = "PRODUCTSETTLEMENT#MEMBER"
+	ProductSettlementGsi1Sk = "PRODUCTSETTLEMENT#CREATEDTIMESTAMP"
+	ProductSettlementGsi2Pk = "PRODUCTSETTLEMENT#ASSIGNMENTCODE"
+	ProductSettlementGsi2Sk = "PRODUCTSETTLEMENT#CREATEDTIMESTAMP"
+
+	SettlementStatusPending  = "PENDING"
+	SettlementStatusApproved = "APPROVED"
+	SettlementStatusRejected = "REJECTED"
+)
+
+func BuildProductSettlementPk(id string) (pk string) {
+	return fmt.Sprintf("%s#%s", ProductSettlementPk, id)
+}
+func BuildProductSettlementSk(id string) (pk string) {
+	return fmt.Sprintf("%s#%s", ProductSettlementSk, id)
+}
+func BuildProductSettlementGsi1Pk(salesId string) (pk string) {
+	return fmt.Sprintf("%s#%s", ProductSettlementGsi1Pk, salesId)
+}
+func BuildProductSettlementGsi1Sk(date string) (pk string) {
+	return fmt.Sprintf("%s#%s", ProductSettlementGsi1Sk, date)
+}
+func BuildProductSettlementGsi2Pk(assignmentCode string) (pk string) {
+	return fmt.Sprintf("%s#%s", ProductSettlementGsi2Pk, assignmentCode)
+}
+func BuildProductSettlementGsi2Sk(date string) (pk string) {
+	return fmt.Sprintf("%s#%s", ProductSettlementGsi2Sk, date)
 }

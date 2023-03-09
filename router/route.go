@@ -12,6 +12,7 @@ func Route(app fiber.Router) {
 	app.Post("/parastar/generate/store", handler.GenerateStore())
 	app.Post("/parastar/update/store", handler.UpdateStore())
 	app.Post("/parastar/generate/user", handler.GenerateUser())
+	app.Post("/parastar/generate/activity", handler.GenerateActivity())
 	// app.Static("/", "./app")
 	app.Static("/", "./swaggerui")
 }
